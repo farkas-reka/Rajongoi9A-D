@@ -38,3 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   obs.observe(section);
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const el = document.querySelector("#heroCarousel");
+  if (!el || !window.bootstrap) return;
+
+  const c = bootstrap.Carousel.getOrCreateInstance(el, {
+    interval: 5000,
+    ride: "carousel",
+    pause: false,
+    touch: true
+  });
+
+  c.cycle(); // force it to start moving
+});

@@ -1,11 +1,213 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iron Forge • New Gen</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
     
-</body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">home</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link px-3" href="index.html">home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3" href="prime.html">prime</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3" href="oldschool.html">oldschool</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-warning ms-lg-3" href="index.html#supplement-section"
+                >supplements</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="gen-hero gen-hero-newgen">
+      <div class="container py-5">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-lg-7">
+            <span class="badge text-bg-warning mb-3">NEW GEN</span>
+            <h1 class="display-5 fw-bold text-white mb-3">
+              Smart, evidence-based, online-born lifting
+            </h1>
+            <p class="lead text-white-50 mb-4">
+              Less ego lifting. More technique, consistency, and long-term results.
+              Think: progress you can keep.
+            </p>
+
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-warning" href="#what-is-it">What it is</a>
+              <a class="btn btn-outline-light" href="#pros-cons">Pros & Cons</a>
+              <a class="btn btn-outline-light" href="#takeaways">Takeaways</a>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-5">
+            <div class="gen-card p-4">
+              <h5 class="text-white fw-bold mb-2">New Gen in 10 seconds</h5>
+              <ul class="text-white-50 small mb-0">
+                <li>Science-based training</li>
+                <li>Form & injury prevention</li>
+                <li>Progressive overload done right</li>
+                <li>Recovery is part of the plan</li>
+                <li>More realistic expectations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="container py-5">
+      <!-- What it is -->
+      <section id="what-is-it" class="mb-5">
+        <div class="row g-4">
+          <div class="col-12 col-lg-6">
+            <div class="gen-card h-100 p-4">
+              <h3 class="text-white fw-bold mb-3">What defines “New Gen”?</h3>
+              <p class="text-white-50 mb-0">
+                New Gen lifters grew up with YouTube, podcasts, and research breakdowns.
+                Instead of copying random gym myths, training is often planned with
+                purpose: volume, intensity, and recovery are managed to progress without
+                trashing joints.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="gen-card h-100 p-4">
+              <h3 class="text-white fw-bold mb-3">Core mindset</h3>
+              <p class="text-white-50 mb-0">
+                It’s not “train harder than everyone.” It’s “train better than yesterday.”
+                Controlled reps, good technique, and sustainable programming usually beat
+                maxing out every session.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pillars -->
+      <section class="mb-5">
+        <h2 class="text-white fw-bold text-center mb-4">The pillars</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="gen-card h-100 p-4">
+              <h6 class="text-warning fw-bold mb-2">Evidence</h6>
+              <p class="text-white-50 small mb-0">
+                Decisions based on data and results, not tradition.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="gen-card h-100 p-4">
+              <h6 class="text-warning fw-bold mb-2">Technique</h6>
+              <p class="text-white-50 small mb-0">
+                Clean reps, good range of motion, safer progress.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="gen-card h-100 p-4">
+              <h6 class="text-warning fw-bold mb-2">Recovery</h6>
+              <p class="text-white-50 small mb-0">
+                Sleep, food, and rest are treated like training.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="gen-card h-100 p-4">
+              <h6 class="text-warning fw-bold mb-2">Consistency</h6>
+              <p class="text-white-50 small mb-0">
+                The plan is boring on purpose: it works long-term.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pros/Cons -->
+      <section id="pros-cons" class="mb-5">
+        <h2 class="text-white fw-bold text-center mb-4">Pros & Cons</h2>
+        <div class="row g-4">
+          <div class="col-12 col-lg-6">
+            <div class="gen-card h-100 p-4">
+              <h4 class="text-white fw-bold mb-3">Pros</h4>
+              <ul class="text-white-50 mb-0">
+                <li>Less injury risk from better form and planning</li>
+                <li>More sustainable progress over months/years</li>
+                <li>Better understanding of nutrition and recovery</li>
+                <li>Realistic expectations → less burnout</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="gen-card h-100 p-4">
+              <h4 class="text-white fw-bold mb-3">Cons</h4>
+              <ul class="text-white-50 mb-0">
+                <li>Info overload → “analysis paralysis”</li>
+                <li>Optimizing everything can replace training</li>
+                <li>Short-form content can spread half-truths fast</li>
+                <li>Comparing yourself online can mess with motivation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Takeaways -->
+      <section id="takeaways">
+        <div class="gen-card p-4">
+          <h3 class="text-white fw-bold mb-3">Best takeaway</h3>
+          <p class="text-white-50 mb-0">
+            New Gen lifting is about training smarter and staying in the game.
+            You don’t need perfect optimization — you need a plan you can repeat.
+            The “best program” is the one you actually do.
+          </p>
+        </div>
+
+        <div class="text-center mt-4">
+          <a class="btn btn-warning" href="index.html">Back to Home</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
