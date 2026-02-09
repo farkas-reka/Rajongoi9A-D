@@ -1,0 +1,143 @@
+/* ====== GLOBAL BACKGROUND (smooth fade) ====== */
+body{
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1a1a1a 0%, #0b0b0b 40%, #000 100%);
+  color: #fff;
+}
+
+/* ====== HERO CAROUSEL ====== */
+.hero-img{
+  width: 100%;
+  height: 72vh;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+/* soft dark overlay so text always readable */
+.carousel-item{
+  position: relative;
+}
+.carousel-item::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,0.55) 0%,
+    rgba(0,0,0,0.25) 60%,
+    rgba(0,0,0,0.45) 100%
+  );
+  z-index: 1;
+}
+
+/* ensure caption is above overlay */
+.carousel-caption{
+  z-index: 2;
+  bottom: 18%;
+}
+
+/* Yellow pill title like your buttons */
+.hero-title{
+  display: inline-block;
+  background: #ffc107;
+  color: #000;
+  padding: 0.35rem 0.9rem;
+  border-radius: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: lowercase;
+  box-shadow: 0 10px 30px rgba(255,193,7,0.18);
+}
+
+/* ====== NAVBAR ====== */
+.bg-black{
+  background-color: rgba(0,0,0,0.82) !important;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ====== BENEFITS SECTION (fade into page background) ====== */
+.benefits-section{
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(10,10,10,0.75) 20%,
+    rgba(15,15,15,0.95) 60%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+/* warm subtle glow behind */
+.benefits-section::before{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background: radial-gradient(circle at center,
+    rgba(255,193,7,0.10),
+    transparent 55%);
+  pointer-events:none;
+}
+
+/* The glowing box */
+.benefits-box{
+  max-width: 780px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 16px;
+  color: #eee;
+
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 70px rgba(255,193,7,0.24),
+    0 0 140px rgba(255,193,7,0.10);
+}
+
+/* Optional: slightly nicer collapse feel */
+.collapse{
+  transition: all 0.35s ease;
+}
+
+/* ====== VITRUVIAN SECTION ====== */
+/* ====== VITRUVIAN (panel + glow like benefits) ====== */
+
+.vitruvian-wrap{
+  width: min(520px, 92vw);   /* hard limit + responsive */
+  margin: 5rem auto;         /* spacing top/bottom + centered */
+
+  padding: 14px;
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 70px rgba(255,193,7,0.24),
+    0 0 140px rgba(255,193,7,0.10);
+}
+
+.vitruvian-svg{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Click zones */
+.zone{
+  fill: rgba(255,193,7,0);
+  cursor: pointer;
+}
+
+/* DEV ONLY highlight (comment out for production) */
+
+.zone:hover{
+  fill: rgba(255,193,7,0.18); /* TAKARICSAD INNET AMIKOR KESZ VAN */
+  stroke: rgba(255,193,7,0.55);
+  stroke-width: 3;
+}
