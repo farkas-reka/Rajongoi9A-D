@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       threshold: 0,
-      rootMargin: "0px 0px -35% 0px" // change to -20% earlier, -50% later
+      rootMargin: "0px 0px -25% 0px" // change to -20% earlier, -50% later
     }
   );
 

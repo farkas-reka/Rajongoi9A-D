@@ -13,10 +13,17 @@ body{
   filter: brightness(0.6);
 }
 
-/* soft dark overlay so text always readable */
+#heroCarousel,
+#heroCarousel .carousel-inner{
+  direction: ltr;
+}
+
+
+/* soft dark overlay so text always readable (and DOES NOT block clicks) */
 .carousel-item{
   position: relative;
 }
+
 .carousel-item::before{
   content:"";
   position:absolute;
@@ -28,12 +35,15 @@ body{
     rgba(0,0,0,0.45) 100%
   );
   z-index: 1;
+  pointer-events: none; /* <-- critical */
 }
 
-/* ensure caption is above overlay */
-.carousel-caption{
-  z-index: 2;
-  bottom: 18%;
+/* ensure caption + controls are above overlay */
+.carousel-caption{ z-index: 2; bottom: 18%; }
+.carousel-indicators,
+.carousel-control-prev,
+.carousel-control-next{
+  z-index: 3;
 }
 
 /* Yellow pill title like your buttons */
@@ -222,4 +232,54 @@ body{
   .jeff-hidden{
     transform: translateX(140%);
   }
+}
+
+/* ====== SUPPLEMENTS SECTION ====== */
+.supp-section{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(10,10,10,0.70) 22%,
+    rgba(15,15,15,0.96) 55%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+.supp-section::before{
+  content:"";
+  position:absolute;
+  inset:-35%;
+  background: radial-gradient(circle at 50% 50%,
+    rgba(255,193,7,0.10),
+    transparent 58%);
+  pointer-events:none;
+}
+
+.supp-card{
+  padding: 1.1rem 1.1rem;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 55px rgba(255,193,7,0.18),
+    0 0 120px rgba(255,193,7,0.08);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.supp-card:hover{
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 70px rgba(255,193,7,0.22),
+    0 0 140px rgba(255,193,7,0.10);
+}
+
+.supp-card h5{
+  color: #fff;
+  font-weight: 800;
 }
