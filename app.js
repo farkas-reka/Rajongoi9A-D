@@ -144,3 +144,48 @@ document.addEventListener("DOMContentLoaded", () => {
     if (hovered) getRowGroup(hovered).forEach(c => c.classList.add("supp-rowhover"));
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Find every Bootstrap row that contains a .gen-card
+  const rows = Array.from(document.querySelectorAll(".row"))
+    .filter(r => r.querySelector(".gen-card"));
+
+  if (!rows.length) return;
+
+  const EPS = 4;
+
+  const clearRow = (cols) => cols.forEach(c => c.classList.remove("gen-rowhover"));
+
+  const getCols = (row) =>
+    Array.from(row.children).filter(el => el.classList.contains("col-12"));
+
+  const rowGroupForCol = (cols, col) => {
+    const top = col.getBoundingClientRect().top;
+    return cols.filter(c => Math.abs(c.getBoundingClientRect().top - top) < EPS);
+  };
+
+  rows.forEach(row => {
+    const cols = getCols(row);
+
+    cols.forEach(col => {
+      col.addEventListener("mouseenter", () => {
+        clearRow(cols);
+        rowGroupForCol(cols, col).forEach(c => c.classList.add("gen-rowhover"));
+      });
+
+      col.addEventListener("mouseleave", () => {
+        requestAnimationFrame(() => {
+          const hovered = cols.find(c => c.matches(":hover"));
+          clearRow(cols);
+          if (hovered) rowGroupForCol(cols, hovered).forEach(c => c.classList.add("gen-rowhover"));
+        });
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      const hovered = cols.find(c => c.matches(":hover"));
+      clearRow(cols);
+      if (hovered) rowGroupForCol(cols, hovered).forEach(c => c.classList.add("gen-rowhover"));
+    });
+  });
+});

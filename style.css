@@ -464,3 +464,65 @@ body{
     transition: none !important;
   }
 }
+
+/* ====== GEN PAGES: row + card hover reactor ====== */
+
+.gen-card{
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition:
+    transform 220ms cubic-bezier(.2,.8,.2,1),
+    box-shadow 220ms cubic-bezier(.2,.8,.2,1),
+    filter 220ms cubic-bezier(.2,.8,.2,1);
+  will-change: transform, box-shadow, filter;
+}
+
+/* Shine layer (default hidden) */
+.gen-card::after{
+  content:"";
+  position:absolute;
+  inset:-60%;
+  background: linear-gradient(
+    120deg,
+    transparent 35%,
+    rgba(255,255,255,0.14) 50%,
+    transparent 65%
+  );
+  transform: translateX(-45%) rotate(10deg);
+  opacity: 0;
+  transition: opacity 220ms ease, transform 420ms ease;
+  pointer-events: none;
+}
+
+/* "Row hover" (JS adds .gen-rowhover on the col) */
+.gen-rowhover .gen-card{
+  transform: scale(1.02);
+  filter: brightness(0.98) saturate(1.02);
+  box-shadow:
+    0 0 70px rgba(255,193,7,0.20),
+    0 0 140px rgba(255,193,7,0.10);
+}
+
+/* The hovered card: bigger + shinier */
+.gen-card:hover{
+  transform: scale(1.06) translateY(-3px);
+  filter: brightness(1.08) saturate(1.12);
+  box-shadow:
+    0 0 90px rgba(255,193,7,0.26),
+    0 0 190px rgba(255,193,7,0.12);
+  z-index: 2;
+}
+
+.gen-card:hover::after{
+  opacity: 1;
+  transform: translateX(45%) rotate(10deg);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .gen-card,
+  .gen-card::after{
+    transition: none !important;
+  }
+}
