@@ -1,12 +1,61 @@
+/* =========================
+   THEME TOGGLE (ALL PAGES)
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btn = document.getElementById("themeToggle");
+  if (!btn) return;
+
+  const root = document.documentElement;
+
+  // load saved theme
+  const saved = localStorage.getItem("theme");
+  if (saved === "light") root.setAttribute("data-theme","light");
+
+  updateLabel();
+
+  btn.addEventListener("click", () => {
+
+    // activate transition mode
+    root.classList.add("theme-transition");
+
+    const isLight = root.getAttribute("data-theme") === "light";
+
+    if(isLight){
+      root.removeAttribute("data-theme");
+      localStorage.setItem("theme","dark");
+    }else{
+      root.setAttribute("data-theme","light");
+      localStorage.setItem("theme","light");
+    }
+
+    updateLabel();
+
+    // remove transition helper after animation
+    setTimeout(()=>{
+      root.classList.remove("theme-transition");
+    }, 400);
+  });
+
+  function updateLabel(){
+    const isLight = root.getAttribute("data-theme") === "light";
+    btn.textContent = isLight ? "🌙 Dark mode" : "☀️ Light mode";
+  }
+
+});
+
+
+
+/* =========================
+   JEFF CARD (INDEX ONLY)
+   ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const card = document.querySelector(".jeff-card");
   const player = document.getElementById("jeff-player");
   const section = document.getElementById("jeff-section");
 
-  // If any element is missing, stop (prevents console spam)
   if (!card || !player || !section) return;
 
-  // Random Jeff embed links
   const jeffVideos = [
     "https://www.youtube.com/embed/X6H4l9R3DnY",
     "https://www.youtube.com/embed/roCP6wCXPqo",
@@ -17,11 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const randomVideo = jeffVideos[Math.floor(Math.random() * jeffVideos.length)];
   player.src = `${randomVideo}?autoplay=1&mute=1&playsinline=1`;
 
-  // Slide in when the section is around bottom-middle of the viewport
   const obs = new IntersectionObserver(
     (entries) => {
       const entry = entries[0];
-
       if (entry.isIntersecting) {
         card.classList.add("jeff-show");
         card.classList.remove("jeff-hidden");
@@ -30,15 +77,16 @@ document.addEventListener("DOMContentLoaded", () => {
         card.classList.add("jeff-hidden");
       }
     },
-    {
-      threshold: 0,
-      rootMargin: "0px 0px -25% 0px" // change to -20% earlier, -50% later
-    }
+    { threshold: 0, rootMargin: "0px 0px -25% 0px" }
   );
 
   obs.observe(section);
 });
 
+
+/* =========================
+   HERO CAROUSEL (INDEX ONLY)
+   ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const el = document.querySelector("#heroCarousel");
   if (!el || !window.bootstrap) return;
@@ -50,9 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
     touch: true
   });
 
-  c.cycle(); // force it to start moving
+  c.cycle();
 });
 
+
+/* =========================
+   TRAINER TIP (INDEX ONLY)
+   ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const tip = document.getElementById("trainer-tip");
   const trigger = document.getElementById("tip-trigger");
@@ -61,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!tip || !trigger || !muscle || !tipText) return;
 
-  // random tip text
   const tips = [
     "Control the negative — muscles grow on the way down.",
     "If you can ego lift it, you can probably lift it lighter and better.",
@@ -71,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   tipText.textContent = tips[Math.floor(Math.random() * tips.length)];
 
-  // Track visibility safely (no entry order assumptions)
   let triggerVisible = false;
   let muscleVisible = false;
 
@@ -86,58 +136,47 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entry.target === muscle) muscleVisible = entry.isIntersecting;
     }
     update();
-  }, {
-    threshold: 0,
-    rootMargin: "0px 0px -25% 0px" // tweak later if you want
-  });
+  }, { threshold: 0, rootMargin: "0px 0px -25% 0px" });
 
   observer.observe(trigger);
   observer.observe(muscle);
 });
 
+
+/* =========================
+   SUPP ROW HOVER (INDEX ONLY)
+   ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("supplement-section");
   if (!grid) return;
 
-  const cols = Array.from(grid.children).filter(el =>
-    el.classList.contains("col-12")
-  );
+  const cols = Array.from(grid.children).filter(el => el.classList.contains("col-12"));
+  if (!cols.length) return;
 
-  // groups columns that share the same "top" (same row visually)
+  const EPS = 4;
+
   const getRowGroup = (col) => {
     const top = col.getBoundingClientRect().top;
-    // allow tiny differences from sub-pixel layout
-    const EPS = 4;
-
     return cols.filter(c => Math.abs(c.getBoundingClientRect().top - top) < EPS);
   };
 
-  const clearRowHover = () => {
-    cols.forEach(c => c.classList.remove("supp-rowhover"));
-  };
+  const clearRowHover = () => cols.forEach(c => c.classList.remove("supp-rowhover"));
 
   cols.forEach(col => {
     col.addEventListener("mouseenter", () => {
       clearRowHover();
-      const row = getRowGroup(col);
-      row.forEach(c => c.classList.add("supp-rowhover"));
+      getRowGroup(col).forEach(c => c.classList.add("supp-rowhover"));
     });
 
     col.addEventListener("mouseleave", () => {
-      // small delay helps when moving between cards in same row
       requestAnimationFrame(() => {
-        // if mouse is still inside the grid, keep row hover based on hovered element
         const hovered = cols.find(c => c.matches(":hover"));
-        if (!hovered) clearRowHover();
-        else {
-          clearRowHover();
-          getRowGroup(hovered).forEach(c => c.classList.add("supp-rowhover"));
-        }
+        clearRowHover();
+        if (hovered) getRowGroup(hovered).forEach(c => c.classList.add("supp-rowhover"));
       });
     });
   });
 
-  // when the window resizes, the row grouping changes
   window.addEventListener("resize", () => {
     const hovered = cols.find(c => c.matches(":hover"));
     clearRowHover();
@@ -145,16 +184,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+/* =========================
+   GEN PAGES ROW HOVER (ALL PAGES THAT HAVE .gen-card)
+   ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  // Find every Bootstrap row that contains a .gen-card
   const rows = Array.from(document.querySelectorAll(".row"))
     .filter(r => r.querySelector(".gen-card"));
 
   if (!rows.length) return;
 
   const EPS = 4;
-
-  const clearRow = (cols) => cols.forEach(c => c.classList.remove("gen-rowhover"));
 
   const getCols = (row) =>
     Array.from(row.children).filter(el => el.classList.contains("col-12"));
@@ -166,17 +206,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   rows.forEach(row => {
     const cols = getCols(row);
+    if (!cols.length) return;
+
+    const clearRow = () => cols.forEach(c => c.classList.remove("gen-rowhover"));
 
     cols.forEach(col => {
       col.addEventListener("mouseenter", () => {
-        clearRow(cols);
+        clearRow();
         rowGroupForCol(cols, col).forEach(c => c.classList.add("gen-rowhover"));
       });
 
       col.addEventListener("mouseleave", () => {
         requestAnimationFrame(() => {
           const hovered = cols.find(c => c.matches(":hover"));
-          clearRow(cols);
+          clearRow();
           if (hovered) rowGroupForCol(cols, hovered).forEach(c => c.classList.add("gen-rowhover"));
         });
       });
@@ -184,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("resize", () => {
       const hovered = cols.find(c => c.matches(":hover"));
-      clearRow(cols);
+      clearRow();
       if (hovered) rowGroupForCol(cols, hovered).forEach(c => c.classList.add("gen-rowhover"));
     });
   });
