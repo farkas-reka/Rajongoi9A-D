@@ -272,13 +272,6 @@ body{
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.supp-card:hover{
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 70px rgba(255,193,7,0.22),
-    0 0 140px rgba(255,193,7,0.10);
-}
-
 .supp-card h5{
   color: #fff;
   font-weight: 800;
@@ -356,4 +349,118 @@ body{
   mix-blend-mode: overlay;
   opacity: 0.45;
   pointer-events:none;
+}
+
+/* ===== TRAINER TIP ===== */
+
+.trainer-tip{
+  position: fixed;
+  left: -360px;
+  bottom: 120px;
+  z-index: 9999;
+
+  transition: left 0.6s cubic-bezier(.77,0,.18,1);
+}
+
+.trainer-tip.show{
+  left: 30px;
+}
+
+.tip-card{
+  width: 320px;
+  padding: 18px;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  box-shadow:
+    0 0 60px rgba(255,193,7,0.18),
+    0 0 120px rgba(255,193,7,0.08);
+}
+
+.tip-label{
+  color: #ffc107;
+  font-weight: 700;
+  display:block;
+  margin-bottom:6px;
+}
+
+.tip-card p{
+  color:#ddd;
+  margin:0;
+  font-size: 0.95rem;
+}
+
+#tip-trigger{
+  height: 1px;
+  margin-top: 200px; 
+}
+
+/* ====== SUPP: cursor-reactive row + card ====== */
+
+/* smoother & avoid layout jumps */
+#supplement-section .col-12 {
+  will-change: transform, filter;
+}
+
+#supplement-section .supp-card{
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition:
+    transform 220ms cubic-bezier(.2,.8,.2,1),
+    box-shadow 220ms cubic-bezier(.2,.8,.2,1),
+    filter 220ms cubic-bezier(.2,.8,.2,1);
+}
+
+/* default shine layer (off by default) */
+#supplement-section .supp-card::after{
+  content:"";
+  position:absolute;
+  inset:-60%;
+  background: linear-gradient(
+    120deg,
+    transparent 35%,
+    rgba(255,255,255,0.16) 50%,
+    transparent 65%
+  );
+  transform: translateX(-40%) rotate(10deg);
+  opacity: 0;
+  transition: opacity 220ms ease, transform 420ms ease;
+  pointer-events: none;
+}
+
+/* --- "Row hover" state (set by JS on the row items) --- */
+#supplement-section .supp-rowhover .supp-card{
+  transform: scale(1.02);
+  filter: brightness(0.98) saturate(1.02);
+  box-shadow:
+    0 0 65px rgba(255,193,7,0.20),
+    0 0 140px rgba(255,193,7,0.10);
+}
+
+/* --- "Card hover" state (the one you're actually on) --- */
+#supplement-section .supp-card:hover{
+  transform: scale(1.07) translateY(-3px);
+  filter: brightness(1.08) saturate(1.12);
+  box-shadow:
+    0 0 85px rgba(255,193,7,0.26),
+    0 0 180px rgba(255,193,7,0.12);
+  z-index: 2;
+}
+
+#supplement-section .supp-card:hover::after{
+  opacity: 1;
+  transform: translateX(40%) rotate(10deg);
+}
+
+/* Optional: reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce){
+  #supplement-section .supp-card,
+  #supplement-section .supp-card::after{
+    transition: none !important;
+  }
 }
