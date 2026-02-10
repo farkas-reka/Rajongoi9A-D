@@ -1,0 +1,7 @@
+{
+    "workbench.colorTheme": "Vampire Theme",
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "emmet.triggerExpansionOnTab": true
+}
