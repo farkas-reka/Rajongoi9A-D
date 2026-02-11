@@ -59,8 +59,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const jeffVideos = [
     "https://www.youtube.com/embed/X6H4l9R3DnY",
     "https://www.youtube.com/embed/roCP6wCXPqo",
+    "https://www.youtube.com/embed/IAnhFUUCq6c",
+    "https://www.youtube.com/embed/2tM1LFFxeKg",
+    "https://www.youtube.com/embed/0ST9o7kGQqQ",
+    "https://www.youtube.com/embed/3abdfR8M5XY",
+    "https://www.youtube.com/embed/IAnhFUUCq6c",
+    "https://www.youtube.com/embed/X6H4l9R3DnY",
+    "https://www.youtube.com/embed/roCP6wCXPqo",
     "https://www.youtube.com/embed/5jY6EPf4v9A",
-    "https://www.youtube.com/embed/IAnhFUUCq6c"
+    "https://www.youtube.com/embed/8A2sZz2QgFQ",
+    "https://www.youtube.com/embed/6zQilDS-NBA",
+    "https://www.youtube.com/embed/fB6elql_EdM",
+    "https://www.youtube.com/embed/gJio0lPysF8",
+    "https://www.youtube.com/embed/6-9pR9h2V5M",
+    "https://www.youtube.com/embed/tB3X4TjTIes",
+    "https://www.youtube.com/embed/l3pCYF0Y0rM",
+    "https://www.youtube.com/embed/q7rCeOa_m58",
+    "https://www.youtube.com/embed/rxEMKXW2Wqs",
+    "https://www.youtube.com/embed/dQw4w9WgXcQ" // dev morale booster 😈
   ];
 
   const randomVideo = jeffVideos[Math.floor(Math.random() * jeffVideos.length)];
@@ -77,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.classList.add("jeff-hidden");
       }
     },
-    { threshold: 0, rootMargin: "0px 0px -25% 0px" }
+    { threshold: 0.15, rootMargin: "0px 0px -25% 0px" }
   );
 
   obs.observe(section);

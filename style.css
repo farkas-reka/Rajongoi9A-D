@@ -98,7 +98,7 @@ body{
 
 /* ====== GLOBAL VIGNETTE (kills section seams) ====== */
 body{
-  position: relative; /* add this line if not present */
+  position: relative; 
 }
 
 /* smooth ambient lighting for the whole page */
@@ -124,7 +124,7 @@ body::before{
     radial-gradient(circle at 50% 55%, rgba(255,255,255,0.35), rgba(255,255,255,0.0) 70%);
 }
 
-/* Bootstrap helper overrides in LIGHT mode (fixes text-white-50 etc) */
+/* Bootstrap helper overrides in LIGHT mode  */
 :root[data-theme="light"] .text-white{
   color: var(--text) !important;
 }
@@ -168,7 +168,7 @@ body::before{
   direction: ltr;
 }
 
-/* soft overlay (does not block clicks) */
+/* soft overlay  */
 .carousel-item{
   position: relative;
 }
