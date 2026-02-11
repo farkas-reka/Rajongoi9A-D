@@ -1,0 +1,752 @@
+/* =========================
+   THEME TOKENS (DARK/LIGHT)
+   ========================= */
+/* ===== THEME FADE ENGINE ===== */
+
+/* only animate colors — NEVER transforms */
+html.theme-transition,
+html.theme-transition *{
+  transition:
+    background-color 350ms ease,
+    color 250ms ease,
+    border-color 250ms ease,
+    box-shadow 350ms ease,
+    fill 250ms ease,
+    stroke 250ms ease !important;
+}
+
+/* prevent bootstrap weirdness */
+html.theme-transition .carousel,
+html.theme-transition .hero-img{
+  transition: none !important;
+}
+
+:root{
+  /* Backgrounds */
+  --bg-0: #000000;
+  --bg-1: #0b0b0b;
+  --bg-2: #1a1a1a;
+
+  /* Text */
+  --text: #ffffff;
+  --muted: rgba(255,255,255,0.65);
+
+  /* Surfaces */
+  --card: rgba(255,255,255,0.06);
+  --card-2: rgba(255,255,255,0.05);
+  --border: rgba(255,255,255,0.10);
+  --hairline: rgba(255,255,255,0.06);
+
+  /* Accent + glow */
+  --accent: #ffc107; /* dark mode stays yellow */
+  --glow-1: rgba(255,193,7,0.24);
+  --glow-2: rgba(255,193,7,0.10);
+
+  /* Overlay */
+  --overlay-a: rgba(0,0,0,0.55);
+  --overlay-b: rgba(0,0,0,0.25);
+  --overlay-c: rgba(0,0,0,0.45);
+
+  /* Hero image brightness */
+  --hero-brightness: 0.60;
+
+  /* Link-ish hover */
+  --focus: rgba(255,193,7,0.35);
+}
+
+:root[data-theme="light"]{
+  /* pastel azure base */
+  --bg-0: #eaf6ff;
+  --bg-1: #dff1ff;
+  --bg-2: #f7fbff;
+
+  --text: #111827;
+  --muted: rgba(17,24,39,0.65);
+
+  --card: rgba(255,255,255,0.78);
+  --card-2: rgba(255,255,255,0.66);
+  --border: rgba(17,24,39,0.12);
+  --hairline: rgba(17,24,39,0.10);
+
+  /* purple accent + glow */
+  --accent: #7c3aed;
+  --glow-1: rgba(124,58,237,0.22);
+  --glow-2: rgba(124,58,237,0.10);
+
+  /* overlay becomes lighter (so hero doesn’t look like a funeral) */
+  --overlay-a: rgba(255,255,255,0.18);
+  --overlay-b: rgba(255,255,255,0.05);
+  --overlay-c: rgba(0,0,0,0.10);
+
+  --hero-brightness: 0.82;
+  --focus: rgba(124,58,237,0.28);
+}
+
+/* global smooth transition (not too slow) */
+html{
+  color-scheme: dark;
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+}
+
+body{
+  min-height: 100vh;
+  background: radial-gradient(circle at top, var(--bg-2) 0%, var(--bg-1) 40%, var(--bg-0) 100%);
+  color: var(--text);
+}
+
+/* ====== GLOBAL VIGNETTE (kills section seams) ====== */
+body{
+  position: relative; /* add this line if not present */
+}
+
+/* smooth ambient lighting for the whole page */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  /* two soft glows + vignette to blend everything */
+  background:
+    radial-gradient(circle at 50% 20%, color-mix(in srgb, var(--glow-1) 65%, transparent), transparent 58%),
+    radial-gradient(circle at 50% 85%, color-mix(in srgb, var(--glow-2) 70%, transparent), transparent 62%),
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,0.08), rgba(0,0,0,0.70) 72%);
+}
+
+/* light mode vignette needs to be softer (no dirty gray corners) */
+:root[data-theme="light"] body::before{
+  background:
+    radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--glow-1) 55%, transparent), transparent 60%),
+    radial-gradient(circle at 50% 88%, color-mix(in srgb, var(--glow-2) 55%, transparent), transparent 65%),
+    radial-gradient(circle at 50% 55%, rgba(255,255,255,0.35), rgba(255,255,255,0.0) 70%);
+}
+
+/* Bootstrap helper overrides in LIGHT mode (fixes text-white-50 etc) */
+:root[data-theme="light"] .text-white{
+  color: var(--text) !important;
+}
+:root[data-theme="light"] .text-white-50{
+  color: var(--muted) !important;
+}
+
+/* In LIGHT mode: outline-light buttons should become dark-outline */
+:root[data-theme="light"] .btn-outline-light{
+  color: var(--text) !important;
+  border-color: rgba(17,24,39,0.22) !important;
+}
+:root[data-theme="light"] .btn-outline-light:hover{
+  background: rgba(17,24,39,0.06) !important;
+}
+
+/* Make Bootstrap "warning" match our accent in light mode (purple) */
+:root[data-theme="light"] .btn-warning{
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+}
+:root[data-theme="light"] .text-bg-warning{
+  background-color: var(--accent) !important;
+  color: #fff !important;
+}
+:root[data-theme="light"] .text-warning{
+  color: var(--accent) !important;
+}
+
+/* ====== HERO CAROUSEL ====== */
+.hero-img{
+  width: 100%;
+  height: 72vh;
+  object-fit: cover;
+  filter: brightness(var(--hero-brightness));
+}
+
+#heroCarousel,
+#heroCarousel .carousel-inner{
+  direction: ltr;
+}
+
+/* soft overlay (does not block clicks) */
+.carousel-item{
+  position: relative;
+}
+.carousel-item::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    90deg,
+    var(--overlay-a) 0%,
+    var(--overlay-b) 60%,
+    var(--overlay-c) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.carousel-caption{ z-index: 2; bottom: 18%; }
+.carousel-indicators,
+.carousel-control-prev,
+.carousel-control-next{ z-index: 3; }
+
+/* Title pill */
+.hero-title{
+  display: inline-block;
+  background: var(--accent);
+  color: #000;
+  padding: 0.35rem 0.9rem;
+  border-radius: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: lowercase;
+  box-shadow: 0 10px 30px var(--glow-2);
+}
+:root[data-theme="light"] .hero-title{
+  color: #fff;
+}
+
+/* ====== NAVBAR ====== */
+.bg-black{
+  background-color: rgba(0,0,0,0.82) !important;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--hairline);
+}
+:root[data-theme="light"] .bg-black{
+  background-color: rgba(255,255,255,0.78) !important;
+}
+
+/* Theme toggle button */
+.btn-theme{
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .45rem .75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  box-shadow: 0 0 25px var(--glow-2);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+.btn-theme:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 0 40px var(--glow-1);
+  filter: brightness(1.03);
+}
+.btn-theme:focus{
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus), 0 0 40px var(--glow-1);
+}
+.theme-icon{ font-size: 1.05rem; line-height: 1; }
+.theme-label{ font-weight: 700; font-size: .9rem; }
+
+/* ====== BENEFITS SECTION ====== */
+.benefits-section{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(10,10,10,0.75) 20%,
+    rgba(15,15,15,0.95) 60%,
+    rgba(0,0,0,0) 100%
+  );
+}
+:root[data-theme="light"] .benefits-section{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0) 0%,
+    rgba(235,247,255,0.85) 20%,
+    rgba(239,250,255,0.95) 60%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+.benefits-section::before{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background: radial-gradient(circle at center, var(--glow-2), transparent 55%);
+  pointer-events:none;
+}
+
+.benefits-box{
+  max-width: 780px;
+  background: var(--card);
+  border-radius: 16px;
+  color: var(--text);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 70px var(--glow-1), 0 0 140px var(--glow-2);
+}
+
+.collapse{ transition: all 0.35s ease; }
+
+/* ====== VITRUVIAN ====== */
+.vitruvian-wrap{
+  width: min(520px, 92vw);
+  margin: 5rem auto;
+  padding: 14px;
+  border-radius: 18px;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 70px var(--glow-1), 0 0 140px var(--glow-2);
+}
+
+.vitruvian-svg{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.zone{
+  fill: rgba(255,255,255,0);
+  cursor: pointer;
+}
+
+.zone:hover{
+  fill: color-mix(in srgb, var(--accent) 18%, transparent);
+  stroke: color-mix(in srgb, var(--accent) 55%, transparent);
+  stroke-width: 3;
+}
+
+/* ====== JEFF VIDEO SECTION ====== */
+.jeff-section{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(10,10,10,0.70) 22%,
+    rgba(15,15,15,0.96) 55%,
+    rgba(0,0,0,0) 100%
+  );
+}
+:root[data-theme="light"] .jeff-section{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0) 0%,
+    rgba(235,247,255,0.85) 22%,
+    rgba(239,250,255,0.95) 55%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+.jeff-section::before{
+  content:"";
+  position:absolute;
+  inset:-35%;
+  background: radial-gradient(circle at 50% 50%, var(--glow-1), transparent 58%);
+  pointer-events:none;
+}
+.jeff-section::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.03),
+    rgba(255,255,255,0.00),
+    rgba(255,255,255,0.03));
+  mix-blend-mode: overlay;
+  opacity: 0.25;
+  pointer-events:none;
+}
+
+.jeff-card{
+  width: min(900px, 95vw);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 70px var(--glow-1), 0 0 140px var(--glow-2);
+
+  transition:
+    transform 0.75s cubic-bezier(.77,0,.18,1),
+    opacity 0.55s ease;
+
+  will-change: transform, opacity;
+}
+
+.jeff-card:hover{
+  box-shadow: 0 0 85px var(--glow-1), 0 0 160px var(--glow-2);
+}
+
+.jeff-hidden{ transform: translateX(120%); opacity: 0; }
+.jeff-show{ transform: translateX(0); opacity: 1; }
+
+#jeff-player{ width: 100%; height: 100%; border: none; }
+
+@media (max-width: 576px){
+  .jeff-card{ border-radius: 14px; }
+  .jeff-hidden{ transform: translateX(140%); }
+}
+
+/* ====== SUPPLEMENTS SECTION ====== */
+.supp-section{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(10,10,10,0.70) 22%,
+    rgba(15,15,15,0.96) 55%,
+    rgba(0,0,0,0) 100%
+  );
+}
+:root[data-theme="light"] .supp-section{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0) 0%,
+    rgba(235,247,255,0.85) 22%,
+    rgba(239,250,255,0.95) 55%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+.supp-section::before{
+  content:"";
+  position:absolute;
+  inset:-35%;
+  background: radial-gradient(circle at 50% 50%, var(--glow-2), transparent 58%);
+  pointer-events:none;
+}
+
+.supp-card{
+  padding: 1.1rem 1.1rem;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 55px var(--glow-2), 0 0 120px color-mix(in srgb, var(--glow-2) 70%, transparent);
+}
+
+.supp-card h5{
+  color: var(--text);
+  font-weight: 800;
+}
+
+/* ====== GENERATION PAGES ====== */
+.gen-hero{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(10,10,10,0.70) 22%,
+    rgba(15,15,15,0.96) 55%,
+    rgba(0,0,0,0) 100%
+  );
+}
+:root[data-theme="light"] .gen-hero{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0) 0%,
+    rgba(235,247,255,0.85) 22%,
+    rgba(239,250,255,0.95) 55%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+.gen-hero::before{
+  content:"";
+  position:absolute;
+  inset:-35%;
+  background: radial-gradient(circle at 50% 35%, var(--glow-1), transparent 60%);
+  pointer-events:none;
+}
+
+.gen-hero-newgen::after,
+.gen-hero-prime::after,
+.gen-hero-oldschool::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity: 0.35;
+  pointer-events:none;
+  mix-blend-mode: overlay;
+}
+
+.gen-hero-newgen::after{
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--accent) 10%, transparent),
+    rgba(255,255,255,0.00),
+    color-mix(in srgb, var(--accent) 7%, transparent));
+}
+.gen-hero-prime::after{
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--accent) 12%, transparent),
+    rgba(255,255,255,0.00),
+    color-mix(in srgb, var(--accent) 8%, transparent));
+}
+.gen-hero-oldschool::after{
+  opacity: 0.45;
+  background: radial-gradient(circle at 35% 35%,
+    color-mix(in srgb, var(--accent) 12%, transparent),
+    transparent 55%);
+}
+
+.gen-card{
+  border-radius: 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 70px var(--glow-2), 0 0 140px color-mix(in srgb, var(--glow-2) 70%, transparent);
+}
+
+/* ===== TRAINER TIP ===== */
+.trainer-tip{
+  position: fixed;
+  left: -360px;
+  bottom: 120px;
+  z-index: 9999;
+  transition: left 0.6s cubic-bezier(.77,0,.18,1);
+}
+.trainer-tip.show{ left: 30px; }
+
+.tip-card{
+  width: 320px;
+  padding: 18px;
+  border-radius: 16px;
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 60px var(--glow-2), 0 0 120px color-mix(in srgb, var(--glow-2) 70%, transparent);
+}
+
+.tip-label{
+  color: var(--accent);
+  font-weight: 700;
+  display:block;
+  margin-bottom:6px;
+}
+
+.tip-card p{
+  color: var(--muted);
+  margin:0;
+  font-size: 0.95rem;
+}
+
+#tip-trigger{
+  height: 1px;
+  margin-top: 200px;
+}
+
+/* =========================
+   CURSOR-REACTIVE HOVERS
+   ========================= */
+
+/* Supplements row hover */
+#supplement-section .col-12{ will-change: transform, filter; }
+
+#supplement-section .supp-card{
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition:
+    transform 220ms cubic-bezier(.2,.8,.2,1),
+    box-shadow 220ms cubic-bezier(.2,.8,.2,1),
+    filter 220ms cubic-bezier(.2,.8,.2,1);
+}
+
+#supplement-section .supp-card::after{
+  content:"";
+  position:absolute;
+  inset:-60%;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.16) 50%, transparent 65%);
+  transform: translateX(-40%) rotate(10deg);
+  opacity: 0;
+  transition: opacity 220ms ease, transform 420ms ease;
+  pointer-events: none;
+}
+
+#supplement-section .supp-rowhover .supp-card{
+  transform: scale(1.02);
+  filter: brightness(0.99) saturate(1.03);
+  box-shadow: 0 0 65px var(--glow-2), 0 0 140px color-mix(in srgb, var(--glow-2) 70%, transparent);
+}
+
+#supplement-section .supp-card:hover{
+  transform: scale(1.07) translateY(-3px);
+  filter: brightness(1.08) saturate(1.12);
+  box-shadow: 0 0 90px var(--glow-1), 0 0 190px var(--glow-2);
+  z-index: 2;
+}
+#supplement-section .supp-card:hover::after{
+  opacity: 1;
+  transform: translateX(40%) rotate(10deg);
+}
+
+/* Gen pages row hover */
+.gen-card{
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition:
+    transform 220ms cubic-bezier(.2,.8,.2,1),
+    box-shadow 220ms cubic-bezier(.2,.8,.2,1),
+    filter 220ms cubic-bezier(.2,.8,.2,1);
+  will-change: transform, box-shadow, filter;
+}
+
+.gen-card::after{
+  content:"";
+  position:absolute;
+  inset:-60%;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.14) 50%, transparent 65%);
+  transform: translateX(-45%) rotate(10deg);
+  opacity: 0;
+  transition: opacity 220ms ease, transform 420ms ease;
+  pointer-events: none;
+}
+
+.gen-rowhover .gen-card{
+  transform: scale(1.02);
+  filter: brightness(0.99) saturate(1.03);
+  box-shadow: 0 0 70px var(--glow-2), 0 0 140px color-mix(in srgb, var(--glow-2) 70%, transparent);
+}
+
+.gen-card:hover{
+  transform: scale(1.06) translateY(-3px);
+  filter: brightness(1.08) saturate(1.12);
+  box-shadow: 0 0 90px var(--glow-1), 0 0 190px var(--glow-2);
+  z-index: 2;
+}
+.gen-card:hover::after{
+  opacity: 1;
+  transform: translateX(45%) rotate(10deg);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  #supplement-section .supp-card,
+  #supplement-section .supp-card::after,
+  .gen-card,
+  .gen-card::after{
+    transition: none !important;
+  }
+}
+
+#themeToggle{
+  border-radius: 999px;
+  font-weight: 600;
+  padding: .45rem .9rem;
+}
+
+#themeToggle:hover{
+  transform: translateY(-1px);
+}
+
+/* =========================
+   SEAM FIX OVERRIDES (DROP-IN)
+   ========================= */
+
+/* remove bandy section gradients (let global vignette do the blending) */
+.benefits-section,
+.jeff-section,
+.supp-section,
+.gen-hero{
+  background: transparent !important;
+}
+
+/* fade section glow out at top/bottom so edges don't "stack" */
+.benefits-section::before,
+.jeff-section::before,
+.supp-section::before,
+.gen-hero::before{
+  filter: blur(26px);
+  opacity: 0.85;
+
+  -webkit-mask-image: linear-gradient(to bottom,
+    transparent 0%,
+    black 16%,
+    black 84%,
+    transparent 100%);
+  mask-image: linear-gradient(to bottom,
+    transparent 0%,
+    black 16%,
+    black 84%,
+    transparent 100%);
+}
+
+/* your jeff overlay was a bit stripey — soften it */
+.jeff-section::after{
+  opacity: 0.12 !important; 
+}
+
+/* =========================
+   BAND FIX (STRIPES -> SMOOTH)
+   
+   ========================= */
+
+/* 1) Kill the stacked section glows that create horizontal bands */
+.benefits-section::before,
+.jeff-section::before,
+.supp-section::before,
+.gen-hero::before{
+  opacity: 0 !important;
+  display: none !important;
+}
+
+/* also soften stripey overlay */
+.jeff-section::after{
+  opacity: 0.08 !important;
+}
+
+/* 2) Stronger global ambient glow (single source = no band seams) */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background:
+    radial-gradient(circle at 50% 22%, color-mix(in srgb, var(--glow-1) 78%, transparent), transparent 60%),
+    radial-gradient(circle at 50% 55%, color-mix(in srgb, var(--glow-2) 70%, transparent), transparent 70%),
+    radial-gradient(circle at 50% 88%, color-mix(in srgb, var(--glow-2) 55%, transparent), transparent 68%),
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,0.10), rgba(0,0,0,0.82) 74%);
+}
+
+/* light mode version */
+:root[data-theme="light"] body::before{
+  background:
+    radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--glow-1) 62%, transparent), transparent 65%),
+    radial-gradient(circle at 50% 55%, color-mix(in srgb, var(--glow-2) 55%, transparent), transparent 72%),
+    radial-gradient(circle at 50% 88%, color-mix(in srgb, var(--glow-2) 42%, transparent), transparent 70%),
+    radial-gradient(circle at 50% 55%, rgba(255,255,255,0.45), rgba(255,255,255,0.0) 74%);
+}
+
+/* 3) Micro grain to destroy gradient banding (looks “premium”) */
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  /* fake film grain */
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.012) 0px,
+      rgba(255,255,255,0.012) 1px,
+      rgba(0,0,0,0.012) 2px,
+      rgba(0,0,0,0.012) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,0.010) 0px,
+      rgba(0,0,0,0.010) 1px,
+      rgba(255,255,255,0.010) 2px,
+      rgba(255,255,255,0.010) 3px
+    );
+
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+}
