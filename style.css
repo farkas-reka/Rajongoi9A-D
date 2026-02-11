@@ -101,6 +101,7 @@ body{
   position: relative; 
 }
 
+
 /* smooth ambient lighting for the whole page */
 body::before{
   content:"";
