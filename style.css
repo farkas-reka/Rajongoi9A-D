@@ -751,3 +751,28 @@ body::after{
   opacity: 0.12;
   mix-blend-mode: overlay;
 }
+
+/* Chest hover expansion */
+
+.chest-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.chest-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Hide GIF initially */
+.gif-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+/* Expand on hover */
+.chest-card:hover .gif-container {
+  max-height: 300px;
+  margin-top: 10px;
+}
