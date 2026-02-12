@@ -750,3 +750,44 @@ body::after{
   opacity: 0.12;
   mix-blend-mode: overlay;
 }
+
+/*back*/
+#back-section .col-12{ will-change: transform, filter; }
+
+#back-section .supp-card{
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition:
+    transform 220ms cubic-bezier(.2,.8,.2,1),
+    box-shadow 220ms cubic-bezier(.2,.8,.2,1),
+    filter 220ms cubic-bezier(.2,.8,.2,1);
+}
+
+#back-section .supp-card::after{
+  content:"";
+  position:absolute;
+  inset:-60%;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.16) 50%, transparent 65%);
+  transform: translateX(-40%) rotate(10deg);
+  opacity: 0;
+  transition: opacity 220ms ease, transform 420ms ease;
+  pointer-events: none;
+}
+
+#back-section .supp-rowhover .supp-card{
+  transform: scale(1.02);
+  filter: brightness(0.99) saturate(1.03);
+  box-shadow: 0 0 65px var(--glow-2), 0 0 140px color-mix(in srgb, var(--glow-2) 70%, transparent);
+}
+
+#back-section .supp-card:hover{
+  transform: scale(1.07) translateY(-3px);
+  filter: brightness(1.08) saturate(1.12);
+  box-shadow: 0 0 90px var(--glow-1), 0 0 190px var(--glow-2);
+  z-index: 2;
+}
+#back-section .supp-card:hover::after{
+  opacity: 1;
+  transform: translateX(40%) rotate(10deg);
+}
