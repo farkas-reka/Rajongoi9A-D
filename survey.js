@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const questions = ["q1","q2","q3","q4","q5","q6","q7","q8","q9","q10"];
 
   // ---- ANSWER KEY (value of the correct radio option) ----
-  // Example: if q1 correct option input has value="b" then put "b"
   const key = {
     q1: "b",
     q2: "a",
@@ -87,9 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const picked = data.get(q);
       const correct = key[q];
 
-      // FIXED SELECTORS (this was your bug)
-    const chosenInput  = document.querySelector(input[name="${q}"][value="${picked}"]);
-    const correctInput = document.querySelector(input[name="${q}"][value="${correct}"]);
+      // ✅ correct selectors (strings, not variables)
+      const chosenInput  = document.querySelector(`input[name="${q}"][value="${picked}"]`);
+      const correctInput = document.querySelector(`input[name="${q}"][value="${correct}"]`);
 
       const chosenLabel  = chosenInput ? chosenInput.closest(".opt") : null;
       const correctLabel = correctInput ? correctInput.closest(".opt") : null;
@@ -101,7 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
         chosenLabel?.classList.add("bad");
         correctLabel?.classList.add("good");
 
-        const exBox = document.getElementById(ex-${q});
+        // ✅ correct id string
+        const exBox = document.getElementById(`ex-${q}`);
         if (exBox) {
           exBox.textContent = explain[q] || "No explanation added for this one yet.";
           exBox.classList.add("show");
@@ -121,7 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="text-muted" style="margin-top:6px;">${r.msg}</div>
     `;
 
-    // optional: scroll to results
     resultBox.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 
