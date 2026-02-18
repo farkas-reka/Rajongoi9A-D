@@ -776,3 +776,116 @@ body::after{
   max-height: 300px;
   margin-top: 10px;
 }
+
+/* ====== SURVEY ====== */
+.survey-section{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(10,10,10,0.70) 22%,
+    rgba(15,15,15,0.96) 55%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+.survey-section::before{
+  content:"";
+  position:absolute;
+  inset:-35%;
+  background: radial-gradient(circle at 50% 50%,
+    rgba(255,193,7,0.10),
+    transparent 58%);
+  pointer-events:none;
+}
+
+.survey-card{
+  width: min(900px, 95vw);
+  padding: 22px;
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 70px rgba(255,193,7,0.20),
+    0 0 140px rgba(255,193,7,0.08);
+}
+
+.survey-q{
+  text-align: left;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.survey-q:last-child{ border-bottom: none; }
+
+.survey-label{
+  display:block;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.survey-options{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.opt{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: rgba(255,255,255,0.85);
+  cursor:pointer;
+  user-select:none;
+}
+
+.opt input{ margin-right: 8px; }
+
+.survey-select,
+.survey-input{
+  background: rgba(0,0,0,0.25) !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  color: #fff !important;
+}
+
+.survey-select option{
+  color: #000;
+}
+
+.hint-row{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.hint-text{
+  color: rgba(255,255,255,0.70);
+  font-size: 0.95rem;
+}
+
+.survey-result{
+  border-radius: 14px;
+  padding: 14px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+  display:none;
+}
+.survey-result.show{ display:block; }
+
+.survey-bad{
+  border-color: rgba(255,80,80,0.45) !important;
+  box-shadow: 0 0 0 3px rgba(255,80,80,0.12);
+}
+
+.survey-good{
+  border-color: rgba(80,255,160,0.35) !important;
+  box-shadow: 0 0 0 3px rgba(80,255,160,0.10);
+}
