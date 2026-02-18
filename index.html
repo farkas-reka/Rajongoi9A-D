@@ -515,18 +515,39 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <div id="map" style="height: 500px;"></div>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-  var map = L.map('map').setView([47.6875, 17.6504], 13);
+  var map = L.map('map');
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap'
   }).addTo(map);
 
-  L.marker([47.6875, 17.6504])
-    .addTo(map)
-    .bindPopup("Győri konditerem")
-    .openPopup();
+  // Több helyszín
+  var locations = [
+    { name: "Cutler Fitness Győr", lat: 47.6849, lng: 17.6345 },
+    { name: "Oxygen Fitness Győr", lat: 47.6883, lng: 17.6421 },
+    { name: "Fitadvisor Gym Győr", lat: 47.6920, lng: 17.6500 },
+    { name: "Iron Gym Győr", lat: 47.6950, lng: 17.6600 },
+    { name: "Gym 24 Győr", lat: 47.6800, lng: 17.6700 },
+    { name: "Galaxy Body & Fitness Centrum", lat: 47.68035080706885, lng: 17.632663327122547},
+  ];
+
+  var markers = [];
+
+  locations.forEach(function(place) {
+    var marker = L.marker([place.lat, place.lng])
+      .addTo(map)
+      .bindPopup("<b>" + place.name + "</b>");
+    
+    markers.push(marker);
+  });
+
+  // Automatikus térkép igazítás minden markerre
+  var group = L.featureGroup(markers);
+  map.fitBounds(group.getBounds());
 </script>
 
     <!-- Bootstrap JS -->
