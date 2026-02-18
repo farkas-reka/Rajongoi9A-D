@@ -51,7 +51,7 @@
         <a href="new gen lifting.html"><div class="carousel-inner">
           <div class="carousel-item active">
             <img
-              src="kepek/hattereknek,oldal/Adobe Express - file (3).png"
+              src="kepek/hattereknek,oldal/Jeff-Nippard.png"
               class="d-block w-100 hero-img"
               alt="new gen"
             />
@@ -63,7 +63,7 @@
         <a href="prime lifting.html">
           <div class="carousel-item">
             <img
-              src="kepek/hattereknek,oldal/Adobe Express - file (2).png"
+              src="kepek/hattereknek,oldal/ronnie-coleman-g7e4xtzhffkqluzr.jpg"
               class="d-block w-100 hero-img"
               alt="prime"
             />
@@ -76,7 +76,7 @@
 
           <div class="carousel-item">
             <img
-              src="kepek/hattereknek,oldal/Adobe Express - file (1).png"
+              src="kepek/hattereknek,oldal/celebrity-arnold-schwarzenegger-grayscale-sky-2e5zueu03mp9f8dk.jpg"
               class="d-block w-100 hero-img"
               alt="oldschool"
             />
@@ -563,8 +563,54 @@
   </div>
 </section>
 
+<!--map-->
+<section id="survey" class="survey-section py-5">
+  <div class="container">
+    <h2 class="text-white fw-bold text-center mb-2">Map</h2>
+    <div class="survey-card mx-auto">
+      <form id="iron-survey" novalidate>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<div id="map" style="height: 500px;"></div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  var map = L.map('map');
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+
+  // Több helyszín
+  var locations = [
+    { name: '<a target="_blank" href="https://cutlergyor.com/">Cutler Fitness Győr</a>', lat: 47.6849, lng: 17.6345 },
+    { name: '<a target="_blank" href="https://oxygenwellness.hu/fitness/">Oxygen Fitness Győr</a>', lat: 47.6883, lng: 17.6421 },
+    { name: '<a target="_blank" href="https://fitadvisor.hu/">Fitadvisor Gym Győr</a>', lat: 47.6920, lng: 17.6500 },
+    { name: '<a target="_blank" href="https://irongyor.hu/">Iron Gym Győr</a>', lat: 47.6950, lng: 17.6600 },
+    { name: '<a target="_blank" href="https://www.gym24.hu/">Gym 24 Győr</a>', lat: 47.6800, lng: 17.6700 },
+    { name: '<a target="_blank" href="https://galaxywellness.hu/">Galaxy Body & Fitness Centrum</a>', lat: 47.68035080706885, lng: 17.632663327122547},
+    { name: '<a target="_blank" href="https://edzoterem.info/pireus-fitness-fitness-terem-gyor-9011/">Pireus Fittness</a>', lat: 47.69927806166903, lng: 17.737993998402985},
+  ];
+
+  var markers = [];
+
+  locations.forEach(function(place) {
+    var marker = L.marker([place.lat, place.lng])
+      .addTo(map)
+      .bindPopup("<b>" + place.name + "</b>");
+    
+    markers.push(marker);
+  });
+
+  // Automatikus térkép igazítás minden markerre
+  var group = L.featureGroup(markers);
+  map.fitBounds(group.getBounds());
+</script>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
+<a href="https://cutlergyor.com/"></a>
