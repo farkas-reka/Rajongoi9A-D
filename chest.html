@@ -1,11 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Chest Training</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+<!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-warning" href="index.html">← IRON FORGE</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <!-- THEME TOGGLE -->
+            <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+              <button id="themeToggle" class="btn btn-theme" type="button" aria-label="Toggle theme">
+                <span class="theme-icon" aria-hidden="true">🌙</span>
+                <span class="theme-label">Dark</span>
+              </button>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+<div class="container py-5 text-center">
+  <h1 class="text-white fw-bold mb-4">Chest Training</h1>
+
+  <button
+    class="btn btn-warning btn-lg mb-4"
+    data-bs-toggle="collapse"
+    data-bs-target="#benefitsText"
+  >
+    Show Benefits
+  </button>
+
+  <div class="collapse" id="benefitsText">
+    <div class="benefits-box mx-auto p-4">
+      <p class="mb-0">
+        Chest training builds pressing strength, improves upper body balance,
+        enhances posture, and contributes to overall athletic performance.
+        A strong chest supports shoulder stability and helps prevent injury.
+      </p>
+    </div>
+  </div>
+</div>
+
+<section class="supp-section py-5">
+  <div class="container">
+    <h2 class="text-white fw-bold text-center mb-2">
+      Most Effective Chest Exercises
+    </h2>
+    <p class="text-white-50 text-center mb-4">
+      Proven movements. No fluff. Just gains.
+    </p>
+
+    <div class="row g-4">
+
+      <!-- Bench Press -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="supp-card chest-card h-100">
+          <h5>Barbell Bench Press</h5>
+          <ul class="small text-white-50">
+            <li>Targets: Mid chest, triceps, front delts</li>
+            <li>King of chest mass builders</li>
+            <li>Allows progressive overload easily</li>
+            <li>Variations: Flat, Incline, Decline</li>
+          </ul>
+          <div class="gif-container">
+            <div class="tenor-gif-embed" data-postid="6384681188954356773" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/workout-gym-power-strong-flex-gif-6384681188954356773">Workout Gym Sticker</a>from <a href="https://tenor.com/search/workout-stickers">Workout Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+            <!-- ha nem tetszik itt van a sima ><div class="tenor-gif-embed" data-postid="10561583117375519839" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/supino-gif-10561583117375519839">Supino GIF</a>from <a href="https://tenor.com/search/supino-gifs">Supino GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Incline Dumbbell Press -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="supp-card chest-card h-100">
+          <h5>Incline Dumbbell Press</h5>
+          <ul class="small text-white-50">
+            <li>Targets: Upper chest</li>
+            <li>Better stretch than barbell</li>
+            <li>Great for aesthetic fullness</li>
+          </ul>
+          <div class="gif-container">
+            <div class="tenor-gif-embed" data-postid="17350398" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/bench-press-regular-bench-press-exercise-workout-wellness-gif-17350398">Bench Press Regular Bench Press GIF</a>from <a href="https://tenor.com/search/bench+press-gifs">Bench Press GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chest Dips -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="supp-card chest-card h-100">
+          <h5>Chest Dips</h5>
+          <ul class="small text-white-50">
+            <li>Targets: Lower chest</li>
+            <li>Bodyweight strength builder</li>
+            <li>Lean forward to bias chest</li>
+          </ul>
+          <div class="gif-container">
+            <div class="tenor-gif-embed" data-postid="24639768" data-share-method="host" data-aspect-ratio="1.33333" data-width="100%"><a href="https://tenor.com/view/dips-tricep-work-out-gif-24639768">Dips Tricep GIF</a>from <a href="https://tenor.com/search/dips-gifs">Dips GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cable Fly -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="supp-card chest-card h-100">
+          <h5>Cable Fly</h5>
+          <ul class="small text-white-50">
+            <li>Targets: Full chest isolation</li>
+            <li>Constant tension</li>
+            <li>Perfect for hypertrophy</li>
+          </ul>
+          <div class="gif-container">
+            <div class="tenor-gif-embed" data-postid="7867684" data-share-method="host" data-aspect-ratio="1.35" data-width="100%"><a href="https://tenor.com/view/zyzz-gym-mirin-fuark-king-gif-7867684">Zyzz Gym GIF</a>from <a href="https://tenor.com/search/zyzz-gifs">Zyzz GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+          </div>
+        </div>
+      </div>
+
+      <!-- Machine Chest Press -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="supp-card chest-card h-100">
+          <h5>Machine Chest Press</h5>
+          <ul class="small text-white-50">
+            <li>Targets: Mid chest</li>
+            <li>Stable and beginner friendly</li>
+            <li>Great for burnout sets</li>
+          </ul>
+          <div class="gif-container">
+            <div class="tenor-gif-embed" data-postid="4473188251255803678" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/supino-m%C3%A1quina-gif-4473188251255803678">Supino Máquina GIF</a>from <a href="https://tenor.com/search/supino+m%C3%A1quina-gifs">Supino Máquina GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+          </div>
+        </div>
+      </div>
+
+      <!-- Push-Ups -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="supp-card chest-card h-100">
+          <h5>Push-Ups</h5>
+          <ul class="small text-white-50">
+            <li>Targets: Chest, triceps, core</li>
+            <li>Accessible anywhere</li>
+            <li>Advanced: weighted / deficit</li>
+          </ul>
+          <div class="gif-container">
+            <div class="tenor-gif-embed" data-postid="1171585521907987152" data-share-method="host" data-aspect-ratio="1.76596" data-width="100%"><a href="https://tenor.com/view/flexiones-basicas-gif-1171585521907987152">Flexiones Basicas GIF</a>from <a href="https://tenor.com/search/flexiones+basicas-gifs">Flexiones Basicas GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
