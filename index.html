@@ -51,7 +51,7 @@
         <a href="new gen lifting.html"><div class="carousel-inner">
           <div class="carousel-item active">
             <img
-              src="kepek/hattereknek,oldal/Jeff-Nippard.png"
+              src="kepek/hattereknek,oldal/Adobe Express - file (3).png"
               class="d-block w-100 hero-img"
               alt="new gen"
             />
@@ -63,7 +63,7 @@
         <a href="prime lifting.html">
           <div class="carousel-item">
             <img
-              src="kepek/hattereknek,oldal/ronnie-coleman-g7e4xtzhffkqluzr.jpg"
+              src="kepek/hattereknek,oldal/Adobe Express - file (2).png"
               class="d-block w-100 hero-img"
               alt="prime"
             />
@@ -76,7 +76,7 @@
 
           <div class="carousel-item">
             <img
-              src="kepek/hattereknek,oldal/celebrity-arnold-schwarzenegger-grayscale-sky-2e5zueu03mp9f8dk.jpg"
+              src="kepek/hattereknek,oldal/Adobe Express - file (1).png"
               class="d-block w-100 hero-img"
               alt="oldschool"
             />
@@ -124,16 +124,10 @@
         <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item">
-              <a class="navbar-brand text-warning px-0.2" href="survey.html">survey</a>
+              <a class="nav-link px-3" href="#">survey</a>
             </li>
             <li class="nav-item">
-              <a class="navbar-brand text-warning px-0.2" href="#supplement-section">supplements</a>
-            </li>
-            <li class="nav-item">
-              <a class="navbar-brand text-warning px-0.2" href="High-protein meals.html">High-protein meals</a>
-            </li>
-            <li class="nav-item">
-             <a class="navbar-brand text-warning px-0.2" href="recovery.html">restore phase</a>
+              <a class="nav-link px-3" href="#supplement-section">supplements</a>
             </li>
             <li class="nav-item">
               <a class="btn btn-warning ms-lg-3" href="#muscle-group-to-train">extrasize list</a>
@@ -260,7 +254,7 @@
         </a>
       </svg>
     </div>
-      <!-- SUPPLEMENTS (mindegyik ugyan az lehet másolni még beles) -->
+
     <section id="supplements" class="supp-section py-5">
       <div class="container">
         <h2 class="text-white fw-bold text-center mb-2">
@@ -512,105 +506,114 @@
   </div>
 </div>
 
-<section class="team-section py-5">
+<!--survey-->
+10:47
+Te küldted
+<section id="survey" class="survey-section py-5">
   <div class="container">
-
-    <h2 class="text-white fw-bold text-center mb-2">Project Team</h2>
-    <p class="text-white-50 text-center mb-5">
-      The people behind Iron Forge
+    <h2 class="text-white fw-bold text-center mb-2">Quick Survey (30 sec)</h2>
+    <p class="text-white-50 text-center mb-4">
+      This helps us improve the site + gives you a mini “coach check”.
     </p>
 
-    <div class="row g-4 justify-content-center">
+    <div class="survey-card mx-auto">
+      <form id="iron-survey" novalidate>
 
-      <!-- Zalan -->
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="team-card text-center p-4 h-100">
-          <img src="kepek/szerkesztok/zalán.jpg" class="team-img mb-3" alt="Kun Zalan">
-          <h5 class="mb-1">Kun Zalan</h5>
-          <p class="text-white-50 small mb-2">Lead Developer</p>
-          <p class="text-white-50 small mb-0">
-            Core logic, animations, architecture and overall development.
-          </p>
+        <!-- Q1 -->
+        <div class="survey-q">
+          <label class="survey-label">1 Your goal right now?</label>
+          <div class="survey-options">
+            <label class="opt"><input type="radio" name="goal" value="strength"> Strength</label>
+            <label class="opt"><input type="radio" name="goal" value="hypertrophy"> Muscle / Hypertrophy</label>
+            <label class="opt"><input type="radio" name="goal" value="fatloss"> Fat loss</label>
+            <label class="opt"><input type="radio" name="goal" value="health"> General health</label>
+          </div>
+          <div class="hint-row">
+            <button type="button" class="btn btn-outline-light btn-sm hint-btn" data-hint="goal">
+              Why?
+            </button>
+            <span class="hint-text" id="hint-goal"></span>
+          </div>
         </div>
-      </div>
 
-      <!-- Reka -->
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="team-card text-center p-4 h-100">
-          <img src="kepek/szerkesztok/réka.jpg" class="team-img mb-3" alt="Farkas Reka">
-          <h5 class="mb-1">Farkas Reka</h5>
-          <p class="text-white-50 small mb-2">Design & Content</p>
-          <p class="text-white-50 small mb-0">
-            Visual ideas, layout inspiration and content support.
-          </p>
+        <!-- Q2 -->
+        <div class="survey-q">
+          <label class="survey-label">2 Best “hypertrophy range” for MOST sets?</label>
+          <select class="form-select survey-select" name="repRange" required>
+            <option value="" selected disabled>Pick one…</option>
+            <option value="1-3">1–3 reps</option>
+            <option value="4-6">4–6 reps</option>
+            <option value="6-12">6–12 reps</option>
+            <option value="20-30">20–30 reps</option>
+          </select>
+          <div class="hint-row">
+            <button type="button" class="btn btn-outline-light btn-sm hint-btn" data-hint="repRange">
+              Wrong? tell me why
+            </button>
+            <span class="hint-text" id="hint-repRange"></span>
+          </div>
         </div>
-      </div>
 
-      <!-- Dominik -->
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="team-card text-center p-4 h-100">
-          <img src="kepek/szerkesztok/dominik.jpg" class="team-img mb-3" alt="Horvath Dominik">
-          <h5 class="mb-1">Horvath Dominik</h5>
-          <p class="text-white-50 small mb-2">Research & Features</p>
-          <p class="text-white-50 small mb-0">
-            Exercise research, feature ideas and testing.
-          </p>
+        <!-- Q3 -->
+        <div class="survey-q">
+          <label class="survey-label">3 If your sleep is trash, what happens to gains?</label>
+          <div class="survey-options">
+            <label class="opt"><input type="radio" name="sleep" value="nochange"> Nothing changes</label>
+            <label class="opt"><input type="radio" name="sleep" value="worse"> Recovery + performance get worse</label>
+            <label class="opt"><input type="radio" name="sleep" value="better"> You gain faster</label>
+          </div>
+          <div class="hint-row">
+            <button type="button" class="btn btn-outline-light btn-sm hint-btn" data-hint="sleep">
+              Wrong? tell me why
+            </button>
+            <span class="hint-text" id="hint-sleep"></span>
+          </div>
         </div>
-      </div>
 
+        <!-- Q4 -->
+        <div class="survey-q">
+          <label class="survey-label">4 Creatine: best way to take it?</label>
+          <select class="form-select survey-select" name="creatine" required>
+            <option value="" selected disabled>Pick one…</option>
+            <option value="onlyworkout">Only on workout days</option>
+            <option value="daily">3–5g daily (consistency)</option>
+            <option value="megadose">20g every day forever</option>
+            <option value="nightonly">Only at night</option>
+          </select>
+          <div class="hint-row">
+            <button type="button" class="btn btn-outline-light btn-sm hint-btn" data-hint="creatine">
+              Wrong? tell me why
+            </button>
+            <span class="hint-text" id="hint-creatine"></span>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="survey-q">
+          <label class="survey-label">5 How many days/week do you realistically train?</label>
+          <input class="form-control survey-input" type="number" name="days" min="0" max="7" placeholder="0–7" required>
+          <div class="hint-row">
+            <button type="button" class="btn btn-outline-light btn-sm hint-btn" data-hint="days">
+              Hint
+            </button>
+            <span class="hint-text" id="hint-days"></span>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 justify-content-center mt-4">
+          <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+          <button type="button" id="survey-reset" class="btn btn-outline-light btn-lg">Reset</button>
+        </div>
+
+        <div id="survey-result" class="survey-result mt-4" aria-live="polite"></div>
+      </form>
     </div>
-
   </div>
 </section>
 
-<!--map-->
-<section id="survey" class="survey-section py-5">
-  <div class="container">
-    <h2 class="text-white fw-bold text-center mb-2">Map</h2>
-    <div class="survey-card mx-auto">
-      <form id="iron-survey" novalidate>
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<div id="map" style="height: 500px;"></div>
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script>
-  var map = L.map('map');
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap'
-  }).addTo(map);
-
-  // Több helyszín
-  var locations = [
-    { name: '<a target="_blank" href="https://cutlergyor.com/">Cutler Fitness Győr</a>', lat: 47.6849, lng: 17.6345 },
-    { name: '<a target="_blank" href="https://oxygenwellness.hu/fitness/">Oxygen Fitness Győr</a>', lat: 47.6883, lng: 17.6421 },
-    { name: '<a target="_blank" href="https://fitadvisor.hu/">Fitadvisor Gym Győr</a>', lat: 47.6920, lng: 17.6500 },
-    { name: '<a target="_blank" href="https://irongyor.hu/">Iron Gym Győr</a>', lat: 47.6950, lng: 17.6600 },
-    { name: '<a target="_blank" href="https://www.gym24.hu/">Gym 24 Győr</a>', lat: 47.6800, lng: 17.6700 },
-    { name: '<a target="_blank" href="https://galaxywellness.hu/">Galaxy Body & Fitness Centrum</a>', lat: 47.68035080706885, lng: 17.632663327122547},
-    { name: '<a target="_blank" href="https://edzoterem.info/pireus-fitness-fitness-terem-gyor-9011/">Pireus Fittness</a>', lat: 47.69927806166903, lng: 17.737993998402985},
-  ];
-
-  var markers = [];
-
-  locations.forEach(function(place) {
-    var marker = L.marker([place.lat, place.lng])
-      .addTo(map)
-      .bindPopup("<b>" + place.name + "</b>");
-    
-    markers.push(marker);
-  });
-
-  // Automatikus térkép igazítás minden markerre
-  var group = L.featureGroup(markers);
-  map.fitBounds(group.getBounds());
-</script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
-<a href="https://cutlergyor.com/"></a>
