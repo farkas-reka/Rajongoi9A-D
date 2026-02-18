@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite High-Protein Meals | Iron Forge</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- ELITE MEAL CARD SYSTEM (Beépített CSS a biztonság kedvéért) --- */
+        .meal-item {
+            display: flex;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            min-height: 380px;
+            margin-bottom: 2rem;
+        }
+
+        .meal-image-container {
+            width: 420px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .meal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85) contrast(1.1);
+            transition: transform 0.7s ease;
+        }
+
+        .meal-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 50px var(--glow-1);
+        }
+
+        .meal-item:hover .meal-image {
+            transform: scale(1.08);
+        }
+
+        .meal-content {
+            padding: 2.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .macro-info {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .ingredients-list {
+            list-style: none;
+            padding: 0;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        /* Reveal Animation */
+        .reveal-hidden {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Filter Buttons */
+        .filter-btn {
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-btn.active {
+            background-color: var(--accent) !important;
+            color: black !important;
+            box-shadow: 0 0 25px var(--glow-1);
+        }
+
+        .meal-card-wrap {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        @media (max-width: 992px) {
+            .meal-item { flex-direction: column; min-height: auto; }
+            .meal-image-container { width: 100%; height: 260px; }
+            .meal-content { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-warning" href="index.html">← IRON FORGE</a>
+            <div class="ms-auto">
+                 <button id="themeToggle" class="btn btn-theme" type="button">
+                    <span class="theme-icon">🌙</span>
+                    <span class="theme-label">Theme</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="supp-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1 class="text-white fw-bold display-4">Elite <span class="text-warning">Fuel</span></h1>
+                <p class="text-white-50">Premium high-protein recipes for maximum performance.</p>
+            </div>
+
+            <div class="d-flex justify-content-center gap-2 mb-5 flex-wrap">
+                <button class="btn filter-btn active" onclick="filterMeals('all', this)">All Recipes</button>
+                <button class="btn filter-btn" onclick="filterMeals('Strength', this)">Strength</button>
+                <button class="btn filter-btn" onclick="filterMeals('Lean Bulk', this)">Lean Bulk</button>
+                <button class="btn filter-btn" onclick="filterMeals('Recovery', this)">Recovery</button>
+            </div>
+
+            <div class="row g-4 justify-content-center" id="meal-container">
+                
+                <div class="col-12 col-xl-10 meal-card-wrap" data-category="Strength">
+                    <div class="meal-item">
+                        <div class="meal-image-container">
+                            <img src="https://images.unsplash.com/photo-1558030006-450675393462?q=80&w=800" class="meal-image">
+                        </div>
+                        <div class="meal-content">
+                            <div class="meal-header d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="meal-title text-warning mb-0">Garlic Butter Flank Steak</h3>
+                                <div class="meal-badges">
+                                    <span class="badge text-bg-warning">Strength</span>
+                                    <span class="badge border border-secondary text-white-50 small">⏱ 20 min</span>
+                                </div>
+                            </div>
+                            <div class="macro-bar-container mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="text-white-50 small">Protein Efficiency</span>
+                                    <span class="text-warning small fw-bold">52g</span>
+                                </div>
+                                <div class="progress" style="height: 4px; background: rgba(255,255,255,0.1);">
+                                    <div class="progress-bar bg-warning" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="macro-info mb-3">
+                                <span>Carbs: <strong>35g</strong></span>
+                                <span>Fats: <strong>18g</strong></span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="text-warning small fw-bold mb-0">INGREDIENTS:</h6>
+                                <button class="btn btn-sm text-white-50 p-0" onclick="copyIngredients(this)">
+                                    <small>📋 Copy List</small>
+                                </button>
+                            </div>
+                            <ul class="ingredients-list mt-2"><li>250g Flank Steak, 200g Baby Potatoes, Garlic, Fresh Rosemary.</li></ul>
+                            <h6 class="text-warning small fw-bold mt-3">PREPARATION:</h6>
+                            <p class="text-white-50 small mb-0">Sear steak on high heat. Pan-fry halved potatoes until golden with garlic butter.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-10 meal-card-wrap" data-category="Lean Bulk">
+                    <div class="meal-item">
+                        <div class="meal-image-container">
+                            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=800" class="meal-image">
+                        </div>
+                        <div class="meal-content">
+                            <div class="meal-header d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="meal-title text-warning mb-0">Honey Glazed Salmon</h3>
+                                <div class="meal-badges">
+                                    <span class="badge text-bg-warning">Omega-3</span>
+                                    <span class="badge border border-secondary text-white-50 small">⏱ 15 min</span>
+                                </div>
+                            </div>
+                            <div class="macro-bar-container mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="text-white-50 small">Protein Efficiency</span>
+                                    <span class="text-warning small fw-bold">38g</span>
+                                </div>
+                                <div class="progress" style="height: 4px; background: rgba(255,255,255,0.1);">
+                                    <div class="progress-bar bg-warning" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                            <div class="macro-info mb-3">
+                                <span>Carbs: <strong>45g</strong></span>
+                                <span>Fats: <strong>22g</strong></span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="text-warning small fw-bold mb-0">INGREDIENTS:</h6>
+                                <button class="btn btn-sm text-white-50 p-0" onclick="copyIngredients(this)">
+                                    <small>📋 Copy List</small>
+                                </button>
+                            </div>
+                            <ul class="ingredients-list mt-2"><li>200g Salmon Fillet, 100g Jasmine Rice, Avocado, Edamame beans.</li></ul>
+                            <h6 class="text-warning small fw-bold mt-3">PREPARATION:</h6>
+                            <p class="text-white-50 small mb-0">Air-fry salmon with honey-soy glaze. Serve over rice with sliced avocado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-10 meal-card-wrap" data-category="Lean Bulk">
+                    <div class="meal-item">
+                        <div class="meal-image-container">
+                            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=800" class="meal-image">
+                        </div>
+                        <div class="meal-content">
+                            <div class="meal-header d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="meal-title text-warning mb-0">Turkey Pasta Pro</h3>
+                                <div class="meal-badges">
+                                    <span class="badge text-bg-warning">Lean Bulk</span>
+                                    <span class="badge border border-secondary text-white-50 small">⏱ 18 min</span>
+                                </div>
+                            </div>
+                            <div class="macro-bar-container mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="text-white-50 small">Protein Efficiency</span>
+                                    <span class="text-warning small fw-bold">44g</span>
+                                </div>
+                                <div class="progress" style="height: 4px; background: rgba(255,255,255,0.1);">
+                                    <div class="progress-bar bg-warning" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="macro-info mb-3">
+                                <span>Carbs: <strong>60g</strong></span>
+                                <span>Fats: <strong>9g</strong></span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="text-warning small fw-bold mb-0">INGREDIENTS:</h6>
+                                <button class="btn btn-sm text-white-50 p-0" onclick="copyIngredients(this)">
+                                    <small>📋 Copy List</small>
+                                </button>
+                            </div>
+                            <ul class="ingredients-list mt-2"><li>200g Lean Turkey, 80g Wholewheat Pasta, Marinara, Spinach.</li></ul>
+                            <h6 class="text-warning small fw-bold mt-3">PREPARATION:</h6>
+                            <p class="text-white-50 small mb-0">Cook turkey mince, mix with marinara and spinach. Toss with pasta.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-10 meal-card-wrap" data-category="Strength">
+                    <div class="meal-item">
+                        <div class="meal-image-container">
+                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800" class="meal-image">
+                        </div>
+                        <div class="meal-content">
+                            <div class="meal-header d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="meal-title text-warning mb-0">Anabolic Burrito</h3>
+                                <div class="meal-badges">
+                                    <span class="badge text-bg-warning">Power</span>
+                                    <span class="badge border border-secondary text-white-50 small">⏱ 10 min</span>
+                                </div>
+                            </div>
+                            <div class="macro-bar-container mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="text-white-50 small">Protein Efficiency</span>
+                                    <span class="text-warning small fw-bold">48g</span>
+                                </div>
+                                <div class="progress" style="height: 4px; background: rgba(255,255,255,0.1);">
+                                    <div class="progress-bar bg-warning" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="macro-info mb-3">
+                                <span>Carbs: <strong>42g</strong></span>
+                                <span>Fats: <strong>14g</strong></span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="text-warning small fw-bold mb-0">INGREDIENTS:</h6>
+                                <button class="btn btn-sm text-white-50 p-0" onclick="copyIngredients(this)">
+                                    <small>📋 Copy List</small>
+                                </button>
+                            </div>
+                            <ul class="ingredients-list mt-2"><li>200g Shredded Chicken, 1 Tortilla Wrap, Beans, Greek Yogurt.</li></ul>
+                            <h6 class="text-warning small fw-bold mt-3">PREPARATION:</h6>
+                            <p class="text-white-50 small mb-0">Fill wrap, add yogurt and hot sauce. Toast on a dry pan until crispy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-10 meal-card-wrap" data-category="Recovery">
+                    <div class="meal-item">
+                        <div class="meal-image-container">
+                            <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=800" class="meal-image">
+                        </div>
+                        <div class="meal-content">
+                            <div class="meal-header d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="meal-title text-warning mb-0">Protein Pancakes</h3>
+                                <div class="meal-badges">
+                                    <span class="badge text-bg-warning">Recovery</span>
+                                    <span class="badge border border-secondary text-white-50 small">⏱ 12 min</span>
+                                </div>
+                            </div>
+                            <div class="macro-bar-container mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="text-white-50 small">Protein Efficiency</span>
+                                    <span class="text-warning small fw-bold">40g</span>
+                                </div>
+                                <div class="progress" style="height: 4px; background: rgba(255,255,255,0.1);">
+                                    <div class="progress-bar bg-warning" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                            <div class="macro-info mb-3">
+                                <span>Carbs: <strong>30g</strong></span>
+                                <span>Fats: <strong>6g</strong></span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="text-warning small fw-bold mb-0">INGREDIENTS:</h6>
+                                <button class="btn btn-sm text-white-50 p-0" onclick="copyIngredients(this)">
+                                    <small>📋 Copy List</small>
+                                </button>
+                            </div>
+                            <ul class="ingredients-list mt-2"><li>2 Eggs, 1 scoop Whey, 1 Mashed Banana, 30g Oats.</li></ul>
+                            <h6 class="text-warning small fw-bold mt-3">PREPARATION:</h6>
+                            <p class="text-white-50 small mb-0">Blend batter, cook on medium heat. Top with sugar-free syrup.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-10 meal-card-wrap" data-category="Lean Bulk">
+                    <div class="meal-item">
+                        <div class="meal-image-container">
+                            <img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?q=80&w=800" class="meal-image">
+                        </div>
+                        <div class="meal-content">
+                            <div class="meal-header d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="meal-title text-warning mb-0">Turkey Meatballs</h3>
+                                <div class="meal-badges">
+                                    <span class="badge text-bg-warning">Lean Bulk</span>
+                                    <span class="badge border border-secondary text-white-50 small">⏱ 25 min</span>
+                                </div>
+                            </div>
+                            <div class="macro-bar-container mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="text-white-50 small">Protein Efficiency</span>
+                                    <span class="text-warning small fw-bold">42g</span>
+                                </div>
+                                <div class="progress" style="height: 4px; background: rgba(255,255,255,0.1);">
+                                    <div class="progress-bar bg-warning" style="width: 78%;"></div>
+                                </div>
+                            </div>
+                            <div class="macro-info mb-3">
+                                <span>Carbs: <strong>45g</strong></span>
+                                <span>Fats: <strong>11g</strong></span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="text-warning small fw-bold mb-0">INGREDIENTS:</h6>
+                                <button class="btn btn-sm text-white-50 p-0" onclick="copyIngredients(this)">
+                                    <small>📋 Copy List</small>
+                                </button>
+                            </div>
+                            <ul class="ingredients-list mt-2"><li>200g Turkey, 1 Egg, Parmesan, Garlic, Wholewheat Spaghetti.</li></ul>
+                            <h6 class="text-warning small fw-bold mt-3">PREPARATION:</h6>
+                            <p class="text-white-50 small mb-0">Bake meatballs for 15 min at 200°C. Serve with pasta and sauce.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-10 meal-card-wrap" data-category="Recovery">
+                    <div class="meal-item">
+                        <div class="meal-image-container">
+                            <img src="https://images.unsplash.com/photo-1512838243191-e81e8f66f1fd?q=80&w=800" class="meal-image">
+                        </div>
+                        <div class="meal-content">
+                            <div class="meal-header d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="meal-title text-warning mb-0">Shrimp Tacos</h3>
+                                <div class="meal-badges">
+                                    <span class="badge text-bg-warning">Recovery</span>
+                                    <span class="badge border border-secondary text-white-50 small">⏱ 12 min</span>
+                                </div>
+                            </div>
+                            <div class="macro-bar-container mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="text-white-50 small">Protein Efficiency</span>
+                                    <span class="text-warning small fw-bold">36g</span>
+                                </div>
+                                <div class="progress" style="height: 4px; background: rgba(255,255,255,0.1);">
+                                    <div class="progress-bar bg-warning" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                            <div class="macro-info mb-3">
+                                <span>Carbs: <strong>28g</strong></span>
+                                <span>Fats: <strong>9g</strong></span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="text-warning small fw-bold mb-0">INGREDIENTS:</h6>
+                                <button class="btn btn-sm text-white-50 p-0" onclick="copyIngredients(this)">
+                                    <small>📋 Copy List</small>
+                                </button>
+                            </div>
+                            <ul class="ingredients-list mt-2"><li>200g Shrimp, Corn Tortillas, Cabbage Slaw, Lime, Chili.</li></ul>
+                            <h6 class="text-warning small fw-bold mt-3">PREPARATION:</h6>
+                            <p class="text-white-50 small mb-0">Sauté shrimp with chili for 4 min. Load into tortillas with slaw.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-10 meal-card-wrap" data-category="Strength">
+                    <div class="meal-item">
+                        <div class="meal-image-container">
+                            <img src="https://images.unsplash.com/photo-1534939561126-755c696d4d00?q=80&w=800" class="meal-image">
+                        </div>
+                        <div class="meal-content">
+                            <div class="meal-header d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="meal-title text-warning mb-0">Iron Stir-Fry Beef</h3>
+                                <div class="meal-badges">
+                                    <span class="badge text-bg-warning">Strength</span>
+                                    <span class="badge border border-secondary text-white-50 small">⏱ 15 min</span>
+                                </div>
+                            </div>
+                            <div class="macro-bar-container mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="text-white-50 small">Protein Efficiency</span>
+                                    <span class="text-warning small fw-bold">46g</span>
+                                </div>
+                                <div class="progress" style="height: 4px; background: rgba(255,255,255,0.1);">
+                                    <div class="progress-bar bg-warning" style="width: 82%;"></div>
+                                </div>
+                            </div>
+                            <div class="macro-info mb-3">
+                                <span>Carbs: <strong>38g</strong></span>
+                                <span>Fats: <strong>14g</strong></span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="text-warning small fw-bold mb-0">INGREDIENTS:</h6>
+                                <button class="btn btn-sm text-white-50 p-0" onclick="copyIngredients(this)">
+                                    <small>📋 Copy List</small>
+                                </button>
+                            </div>
+                            <ul class="ingredients-list mt-2"><li>200g Beef Strips, Broccoli, Soy Sauce, Ginger, Brown Rice.</li></ul>
+                            <h6 class="text-warning small fw-bold mt-3">PREPARATION:</h6>
+                            <p class="text-white-50 small mb-0">Flash-fry beef and veggies. Add soy-ginger sauce and serve with rice.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Copy functionality
+        function copyIngredients(btn) {
+            const list = btn.closest('.meal-content').querySelector('.ingredients-list').innerText;
+            navigator.clipboard.writeText(list);
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<small class="text-success fw-bold">✅ Copied!</small>';
+            setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+        }
+
+        // Filtering Logic
+        function filterMeals(category, btn) {
+            const cards = document.querySelectorAll('.meal-card-wrap');
+            const btns = document.querySelectorAll('.filter-btn');
+            
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => card.style.opacity = '1', 50);
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.display = 'none', 300);
+                }
+            });
+        }
+
+        // Intersection Observer for Reveal Animation
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.meal-item').forEach(el => {
+            el.classList.add('reveal-hidden');
+            observer.observe(el);
+        });
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
