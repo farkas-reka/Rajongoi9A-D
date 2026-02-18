@@ -1288,3 +1288,153 @@ button[onclick*="copyIngredients"]:hover {
     color: #fff;
     font-size: 1.1rem;
 }
+/* ============================================================
+   IRON FORGE ELITE - MASTER STYLESHEET
+   ============================================================ */
+
+/* 1. ALAPVETŐ TÉMA ÉS FADE MOTOR */
+html.theme-transition,
+html.theme-transition * {
+    transition: background-color 350ms ease, color 250ms ease, border-color 250ms ease, box-shadow 350ms ease !important;
+}
+
+:root {
+    --bg-0: #000000;
+    --bg-1: #0b0b0b;
+    --bg-2: #1a1a1a;
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, 0.65);
+    --card: rgba(255, 255, 255, 0.06);
+    --border: rgba(255, 255, 255, 0.1);
+    --hairline: rgba(255, 255, 255, 0.06);
+    --accent: #ffc107; /* Iron Forge Yellow */
+    --glow-1: rgba(255, 193, 7, 0.24);
+    --glow-2: rgba(255, 193, 7, 0.1);
+    --hero-brightness: 0.6;
+}
+
+:root[data-theme="light"] {
+    --bg-0: #eaf6ff;
+    --bg-1: #dff1ff;
+    --bg-2: #f7fbff;
+    --text: #111827;
+    --muted: rgba(11, 18, 27, 0.65);
+    --card: rgba(255, 255, 255, 0.85);
+    --border: rgba(17, 24, 39, 0.12);
+    --accent: #7c3aed; /* Light módban lila */
+    --glow-1: rgba(124, 58, 237, 0.22);
+    --hero-brightness: 0.85;
+}
+
+/* 2. GLOBÁLIS AMBIENT LIGHTING ÉS TEXTÚRA */
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, var(--bg-2) 0%, var(--bg-1) 40%, var(--bg-0) 100%);
+    color: var(--text);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Film szemcsézettség (Film Grain) a prémium hatásért */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 2px);
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+}
+
+/* Globális ragyogás (Seam fix) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: 
+        radial-gradient(circle at 50% 22%, color-mix(in srgb, var(--glow-1) 78%, transparent), transparent 60%),
+        radial-gradient(circle at 50% 88%, color-mix(in srgb, var(--glow-2) 55%, transparent), transparent 68%);
+}
+
+/* 3. KÁRTYA ÉS INTERAKTÍV ELEMEK (Supplements, Meals, Gen) */
+.supp-card, .gen-card, .meal-item, .team-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glossy Shine Effect hovernél */
+.supp-card::after, .gen-card::after, .meal-item::after {
+    content: "";
+    position: absolute;
+    inset: -60%;
+    background: linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.15) 50%, transparent 65%);
+    transform: translateX(-50%) rotate(10deg);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.6s;
+    pointer-events: none;
+}
+
+.supp-card:hover, .gen-card:hover, .meal-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 50px var(--glow-1);
+    border-color: var(--accent);
+}
+
+.supp-card:hover::after, .gen-card:hover::after, .meal-item:hover::after {
+    opacity: 1;
+    transform: translateX(50%) rotate(10deg);
+}
+
+/* 4. ÉTREND SPECIFIKUS FINOMÍTÁSOK */
+.macro-info {
+    display: flex;
+    gap: 1.5rem;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-weight: 700;
+}
+
+.progress {
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--accent), var(--glow-1));
+    box-shadow: 0 0 15px var(--glow-1);
+}
+
+/* 5. GOMBOK ÉS FILTerek */
+.filter-btn {
+    border-radius: 999px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.6rem 1.4rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    transition: 0.3s;
+}
+
+.filter-btn.active {
+    background: var(--accent) !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px var(--glow-1);
+}
+
+/* 6. MOBIL OPTIMALIZÁLÁS */
+@media (max-width: 992px) {
+    .meal-item { flex-direction: column; }
+    .meal-image-container { width: 100%; height: 220px; }
+}
