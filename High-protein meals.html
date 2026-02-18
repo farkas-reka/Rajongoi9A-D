@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* --- ELITE MEAL CARD SYSTEM (Beépített CSS a biztonság kedvéért) --- */
+        /* --- ELITE MEAL CARD SYSTEM --- */
         .meal-item {
             display: flex;
             background: var(--card);
@@ -413,11 +413,11 @@
                 <div class="col-12 col-xl-10 meal-card-wrap" data-category="Strength">
                     <div class="meal-item">
                         <div class="meal-image-container">
-                            <img src="https://images.unsplash.com/photo-1534939561126-755c696d4d00?q=80&w=800" class="meal-image">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800" class="meal-image">
                         </div>
                         <div class="meal-content">
                             <div class="meal-header d-flex justify-content-between align-items-center mb-3">
-                                <h3 class="meal-title text-warning mb-0">Iron Stir-Fry Beef</h3>
+                                <h3 class="meal-title text-warning mb-0">Lemon Garlic Shrimp</h3>
                                 <div class="meal-badges">
                                     <span class="badge text-bg-warning">Strength</span>
                                     <span class="badge border border-secondary text-white-50 small">⏱ 15 min</span>
@@ -426,15 +426,15 @@
                             <div class="macro-bar-container mb-3">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="text-white-50 small">Protein Efficiency</span>
-                                    <span class="text-warning small fw-bold">46g</span>
+                                    <span class="text-warning small fw-bold">45g</span>
                                 </div>
                                 <div class="progress" style="height: 4px; background: rgba(255,255,255,0.1);">
-                                    <div class="progress-bar bg-warning" style="width: 82%;"></div>
+                                    <div class="progress-bar bg-warning" style="width: 80%;"></div>
                                 </div>
                             </div>
                             <div class="macro-info mb-3">
-                                <span>Carbs: <strong>38g</strong></span>
-                                <span>Fats: <strong>14g</strong></span>
+                                <span>Carbs: <strong>32g</strong></span>
+                                <span>Fats: <strong>12g</strong></span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <h6 class="text-warning small fw-bold mb-0">INGREDIENTS:</h6>
@@ -442,9 +442,9 @@
                                     <small>📋 Copy List</small>
                                 </button>
                             </div>
-                            <ul class="ingredients-list mt-2"><li>200g Beef Strips, Broccoli, Soy Sauce, Ginger, Brown Rice.</li></ul>
+                            <ul class="ingredients-list mt-2"><li>250g Large Shrimp, 100g Cooked Quinoa, Asparagus, Lemon.</li></ul>
                             <h6 class="text-warning small fw-bold mt-3">PREPARATION:</h6>
-                            <p class="text-white-50 small mb-0">Flash-fry beef and veggies. Add soy-ginger sauce and serve with rice.</p>
+                            <p class="text-white-50 small mb-0">Sauté shrimp with garlic and lemon zest. Serve over quinoa and roasted asparagus.</p>
                         </div>
                     </div>
                 </div>
@@ -455,7 +455,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Copy functionality
         function copyIngredients(btn) {
             const list = btn.closest('.meal-content').querySelector('.ingredients-list').innerText;
             navigator.clipboard.writeText(list);
@@ -464,7 +463,6 @@
             setTimeout(() => { btn.innerHTML = originalText; }, 2000);
         }
 
-        // Filtering Logic
         function filterMeals(category, btn) {
             const cards = document.querySelectorAll('.meal-card-wrap');
             const btns = document.querySelectorAll('.filter-btn');
@@ -483,7 +481,6 @@
             });
         }
 
-        // Intersection Observer for Reveal Animation
         const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
