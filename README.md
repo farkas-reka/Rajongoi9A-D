@@ -1,24 +1,24 @@
-# Rajongoi9A-D
-# Konditerem rajongói oldal
+# Rajongoi9A-D  
+# Gym Fan Page  
 
-## Ez a weboldal egy iskolai projekt keretében készült, és a konditeremek rajongói oldala.  
-## A célja, hogy bemutassa a konditeremben lévő edzésformák lehetőségeit.
+## This website was created as part of a school project and serves as a fan page dedicated to gyms.  
+## Its purpose is to showcase the wide range of training opportunities available in a gym environment.  
 
-## A weboldal tartalma
-### A konditerem bemutatása
-### Izomcsoportok és azok edzésére szolgáló eszközök/gépek
-### Táplálék kiegészítők ismertetése
-### Győrön belüli termek elhelyezkedése
-### Kvíz
-### Készítők névjegyei
+## Website Content  
+### Introduction to the Gym  
+### Muscle Groups and the Equipment/Machines Used to Train Them  
+### Overview of Dietary Supplements  
+### Gym Locations in Győr  
+### Quiz  
+### Creators' Profiles  
 
-## Felhasznált technológiák
-### HTML
-### CSS3
-### BS5
-### JS
+## Technologies Used  
+### HTML  
+### CSS3  
+### Bootstrap 5  
+### JavaScript  
 
-## Készítette
-### Farkas Réka
-### Kun Zalán
-### Horváth Dominik
+## Created by  
+### Réka Farkas  
+### Zalán Kun  
+### Dominik Horváth  

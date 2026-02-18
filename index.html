@@ -506,7 +506,110 @@
   </div>
 </div>
 
+<!--survey-->
+10:47
+Te küldted
+<section id="survey" class="survey-section py-5">
+  <div class="container">
+    <h2 class="text-white fw-bold text-center mb-2">Quick Survey (30 sec)</h2>
+    <p class="text-white-50 text-center mb-4">
+      This helps us improve the site + gives you a mini “coach check”.
+    </p>
 
+    <div class="survey-card mx-auto">
+      <form id="iron-survey" novalidate>
+
+        <!-- Q1 -->
+        <div class="survey-q">
+          <label class="survey-label">1 Your goal right now?</label>
+          <div class="survey-options">
+            <label class="opt"><input type="radio" name="goal" value="strength"> Strength</label>
+            <label class="opt"><input type="radio" name="goal" value="hypertrophy"> Muscle / Hypertrophy</label>
+            <label class="opt"><input type="radio" name="goal" value="fatloss"> Fat loss</label>
+            <label class="opt"><input type="radio" name="goal" value="health"> General health</label>
+          </div>
+          <div class="hint-row">
+            <button type="button" class="btn btn-outline-light btn-sm hint-btn" data-hint="goal">
+              Why?
+            </button>
+            <span class="hint-text" id="hint-goal"></span>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="survey-q">
+          <label class="survey-label">2 Best “hypertrophy range” for MOST sets?</label>
+          <select class="form-select survey-select" name="repRange" required>
+            <option value="" selected disabled>Pick one…</option>
+            <option value="1-3">1–3 reps</option>
+            <option value="4-6">4–6 reps</option>
+            <option value="6-12">6–12 reps</option>
+            <option value="20-30">20–30 reps</option>
+          </select>
+          <div class="hint-row">
+            <button type="button" class="btn btn-outline-light btn-sm hint-btn" data-hint="repRange">
+              Wrong? tell me why
+            </button>
+            <span class="hint-text" id="hint-repRange"></span>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="survey-q">
+          <label class="survey-label">3 If your sleep is trash, what happens to gains?</label>
+          <div class="survey-options">
+            <label class="opt"><input type="radio" name="sleep" value="nochange"> Nothing changes</label>
+            <label class="opt"><input type="radio" name="sleep" value="worse"> Recovery + performance get worse</label>
+            <label class="opt"><input type="radio" name="sleep" value="better"> You gain faster</label>
+          </div>
+          <div class="hint-row">
+            <button type="button" class="btn btn-outline-light btn-sm hint-btn" data-hint="sleep">
+              Wrong? tell me why
+            </button>
+            <span class="hint-text" id="hint-sleep"></span>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="survey-q">
+          <label class="survey-label">4 Creatine: best way to take it?</label>
+          <select class="form-select survey-select" name="creatine" required>
+            <option value="" selected disabled>Pick one…</option>
+            <option value="onlyworkout">Only on workout days</option>
+            <option value="daily">3–5g daily (consistency)</option>
+            <option value="megadose">20g every day forever</option>
+            <option value="nightonly">Only at night</option>
+          </select>
+          <div class="hint-row">
+            <button type="button" class="btn btn-outline-light btn-sm hint-btn" data-hint="creatine">
+              Wrong? tell me why
+            </button>
+            <span class="hint-text" id="hint-creatine"></span>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="survey-q">
+          <label class="survey-label">5 How many days/week do you realistically train?</label>
+          <input class="form-control survey-input" type="number" name="days" min="0" max="7" placeholder="0–7" required>
+          <div class="hint-row">
+            <button type="button" class="btn btn-outline-light btn-sm hint-btn" data-hint="days">
+              Hint
+            </button>
+            <span class="hint-text" id="hint-days"></span>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 justify-content-center mt-4">
+          <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+          <button type="button" id="survey-reset" class="btn btn-outline-light btn-lg">Reset</button>
+        </div>
+
+        <div id="survey-result" class="survey-result mt-4" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
 
 
     <!-- Bootstrap JS -->
