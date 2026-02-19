@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Forge | Recovery Protocol</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Extra finomítások a mobilitási kártyákhoz */
+        .recovery-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #ffc107; /* Bootstrap Warning sárga */
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .recovery-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .timer-badge {
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        .pro-tip-box {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px dashed #ffc107;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top border-bottom border-secondary">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-warning" href="index.html">← IRON FORGE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <!-- THEME TOGGLE -->
+            <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+              <button id="themeToggle" class="btn btn-theme" type="button" aria-label="Toggle theme">
+                <span class="theme-icon" aria-hidden="true">🌙</span>
+                <span class="theme-label">Dark</span>
+              </button>
+            </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-5 text-center bg-dark">
+        <div class="container">
+            <h1 class="display-4 fw-bold text-uppercase italic">Recovery Protocol</h1>
+            <p class="lead text-white-50">Targeted Stretching & Mobility for Peak Performance</p>
+        </div>
+    </header>
+
+    <div class="container py-5">
+        
+        <h2 class="h4 text-warning text-uppercase mb-4 border-bottom border-warning pb-2">1. Upper Body Mobility</h2>
+        
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="recovery-card p-4 h-100">
+                    <span class="badge bg-warning text-dark timer-badge mb-3">⏱ 60 SECONDS TOTAL</span>
+                    <h3 class="h5 fw-bold">Thoracic Spine Extension</h3>
+                    <p class="text-white-50 small">Fixes "hunchback" posture from heavy lifting or sitting.</p>
+                    <ul class="small">
+                        <li>Place foam roller under shoulder blades.</li>
+                        <li>Support neck with hands.</li>
+                        <li>Lean back over the roller, exhaling deeply.</li>
+                    </ul>
+                    <div class="pro-tip-box p-3 mt-3 small">
+                        <strong>Focus:</strong> No lower back arching. Movement comes from the mid-back only.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="recovery-card p-4 h-100">
+                    <span class="badge bg-warning text-dark timer-badge mb-3">⏱ 45 SEC / SIDE</span>
+                    <h3 class="h5 fw-bold">Wall Chest & Bicep Stretch</h3>
+                    <p class="text-white-50 small">Crucial after bench press or push-up sessions.</p>
+                    <ul class="small">
+                        <li>Forearm against a wall or doorframe.</li>
+                        <li>Step forward with the same leg.</li>
+                        <li>Rotate your torso away from the wall.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="h4 text-warning text-uppercase mb-4 border-bottom border-warning pb-2">2. Lower Body Recovery</h2>
+        
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="recovery-card p-4 h-100">
+                    <span class="badge bg-warning text-dark timer-badge mb-3">⏱ 90 SEC / SIDE</span>
+                    <h3 class="h5 fw-bold">Couch Stretch</h3>
+                    <p class="text-white-50 small">Intense stretch for quads and hip flexors.</p>
+                    <ul class="small">
+                        <li>One knee against a wall, other foot forward in lunge.</li>
+                        <li>Squeeze glutes and stay upright.</li>
+                    </ul>
+                    <div class="pro-tip-box p-3 mt-3 small">
+                        <strong>Warning:</strong> Don't force the upright position if it hurts. Start slow.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="recovery-card p-4 h-100">
+                    <span class="badge bg-warning text-dark timer-badge mb-3">⏱ 60 SEC / SIDE</span>
+                    <h3 class="h5 fw-bold">90/90 Hip Flow</h3>
+                    <p class="text-white-50 small">Improves internal and external hip rotation.</p>
+                    <ul class="small">
+                        <li>Sit with both knees at 90 degrees on floor.</li>
+                        <li>Lean chest over the front knee.</li>
+                        <li>Switch sides slowly without hands.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="h4 text-warning text-uppercase mb-4 border-bottom border-warning pb-2">3. Spine & Nervous System</h2>
+        
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="recovery-card p-4">
+                    <span class="badge bg-warning text-dark timer-badge mb-3">⏱ 2-3 MINUTES</span>
+                    <h3 class="h5 fw-bold">Decompression Hang</h3>
+                    <p class="text-white-50 small">Gravity-based recovery for the entire spine.</p>
+                    <ul class="small">
+                        <li>Grab a pull-up bar, let body go completely limp.</li>
+                        <li>Feel your vertebrae opening up.</li>
+                    </ul>
+                    <div class="pro-tip-box p-3 mt-3 small">
+                        <strong>Breathing:</strong> Use "Box Breathing" (4s in, 4s hold, 4s out) to trigger recovery.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
