@@ -808,10 +808,9 @@ body::after{
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.10);
   backdrop-filter: blur(10px);
+    box-shadow: 0 0 70px var(--glow-2), 0 0 140px color-mix(in srgb, var(--glow-2) 70%, transparent);
 
-  box-shadow:
-    0 0 70px rgba(255,193,7,0.20),
-    0 0 140px rgba(255,193,7,0.08);
+
 }
 
 .survey-q{
@@ -905,6 +904,16 @@ body::after{
   );
 }
 
+:root[data-theme="light"] .team-section{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0) 0%,
+    rgba(235,247,255,0.85) 22%,
+    rgba(239,250,255,0.95) 55%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
 .team-section::before{
   content:"";
   position:absolute;
@@ -915,19 +924,29 @@ body::after{
   pointer-events:none;
 }
 
-.team-card{
-  border-radius: 18px;
-
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(10px);
-
-  box-shadow:
-    0 0 60px rgba(255,193,7,0.18),
-    0 0 120px rgba(255,193,7,0.08);
-
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+.team-section::after{
+  content:"";
+  position:absolute;
+  inset:-30%;
+ background: radial-gradient(circle at center,
+    180deg,
+    rgba(255,255,255,0) 0%,
+    rgba(235,247,255,0.85) 22%,
+    rgba(239,250,255,0.95) 55%,
+    rgba(255,255,255,0) 100%
+  );
+  pointer-events:none;
 }
+
+.team-card{
+  padding: 1.1rem 1.1rem;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 55px var(--glow-2), 0 0 120px color-mix(in srgb, var(--glow-2) 70%, transparent);
+}
+
 
 .team-card:hover{
   transform: translateY(-5px);
@@ -946,6 +965,16 @@ body::after{
 
   box-shadow:
     0 0 25px rgba(255,193,7,0.25);
+}
+.team-card:hover{
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 50px var(--glow-1);
+    border-color: var(--accent);
+}
+
+.team-card:hover::after{
+    opacity: 1;
+    transform: translateX(50%) rotate(10deg);
 }
 
 /* 3. KÁRTYA ÉS INTERAKTÍV ELEMEK (Supplements, Meals, Gen) */
@@ -1020,4 +1049,53 @@ body::after{
     background: var(--accent) !important;
     color: #000 !important;
     box-shadow: 0 0 20px var(--glow-1);
+}
+
+/* ====== MAP ====== */
+.map-section{
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(10,10,10,0.70) 25%,
+    rgba(15,15,15,0.96) 60%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+:root[data-theme="light"] .map-section{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0) 0%,
+    rgba(235,247,255,0.85) 22%,
+    rgba(239,250,255,0.95) 55%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+.map-section::before{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background: radial-gradient(circle at center,
+    rgba(255,193,7,0.10),
+    transparent 60%);
+  pointer-events:none;
+}
+
+.map-section::after{
+  content:"";
+  position:absolute;
+  inset:-30%;
+ background: radial-gradient(circle at center,
+    180deg,
+    rgba(255,255,255,0) 0%,
+    rgba(235,247,255,0.85) 22%,
+    rgba(239,250,255,0.95) 55%,
+    rgba(255,255,255,0) 100%
+  );
+  pointer-events:none;
+  box-shadow: 0 0 55px var(--glow-2), 0 0 120px color-mix(in srgb, var(--glow-2) 70%, transparent);
 }
