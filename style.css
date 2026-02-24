@@ -1099,3 +1099,6 @@ body::after{
   pointer-events:none;
   box-shadow: 0 0 55px var(--glow-2), 0 0 120px color-mix(in srgb, var(--glow-2) 70%, transparent);
 }
+p, li, h1, h2, h3, h4, h5, h6, span {
+  cursor: default;
+}
