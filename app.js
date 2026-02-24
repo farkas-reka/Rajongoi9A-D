@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const jeffVideos = [
     "https://www.youtube.com/embed/X6H4l9R3DnY",
     "https://www.youtube.com/embed/roCP6wCXPqo",
-    "https://www.youtube.com/embed/5jY6EPf4v9A",
+    "https://www.youtube.com/embed/GMEMKMAb5w4?si=9Ra60SSKcaII_6mV",
     "https://www.youtube.com/embed/IAnhFUUCq6c"
   ];
 
