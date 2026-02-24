@@ -39,7 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---- Helper: clear previous styles/explanations ----
   function resetUI() {
-    document.querySelectorAll(".opt").forEach(o => o.classList.remove("good","bad"));
+    console.log("ok");
+    document.querySelectorAll(".opt.good").forEach(o => o.classList.remove("good"));
+    document.querySelectorAll(".opt.bad").forEach(o => o.classList.remove("bad"));
     document.querySelectorAll(".explain").forEach(e => {
       e.classList.remove("show");
       e.textContent = "";
