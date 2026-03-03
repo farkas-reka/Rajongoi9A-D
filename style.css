@@ -1065,6 +1065,17 @@ body::after{
   );
 }
 
+#map {
+  width: 100%;
+  aspect-ratio: 2/1;
+}
+
+@media (max-width: 576px){
+ #map {
+  aspect-ratio: 1/1;
+} 
+}
+
 :root[data-theme="light"] .map-section{
   background: linear-gradient(
     180deg,
